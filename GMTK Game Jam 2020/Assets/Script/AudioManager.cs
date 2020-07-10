@@ -9,6 +9,8 @@ public class AudioManager : MonoBehaviour
     [Header("Audio Array")]
     public Sound[] sounds;
 
+    public static AudioManager instance;
+
     private void Awake()
     {
         foreach(Sound s in sounds)
