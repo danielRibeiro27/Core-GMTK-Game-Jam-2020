@@ -401,6 +401,8 @@ GameObject:
   - component: {fileID: 674258194}
   - component: {fileID: 674258195}
   - component: {fileID: 674258197}
+  - component: {fileID: 674258199}
+  - component: {fileID: 674258200}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -469,6 +471,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 2
   direcao: 1
+  "multiplicadorCa\xEDda": 2.5
+  multiplicadorPulo: 2
 --- !u!114 &674258197
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -497,6 +501,42 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!95 &674258199
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 674258193}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: e1c5fae7a77ee444287fd2fe046342a4, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &674258200
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 674258193}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 65b927aa8c33a3e44988d98d2da1236e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  velocidadeDoPulo: 10
+  chao:
+    serializedVersion: 2
+    m_Bits: 256
+  friccao: 0.05
 --- !u!1 &733293026
 GameObject:
   m_ObjectHideFlags: 0
@@ -508,7 +548,7 @@ GameObject:
   - component: {fileID: 733293029}
   - component: {fileID: 733293028}
   - component: {fileID: 733293027}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: plataforma (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -718,7 +758,7 @@ GameObject:
   - component: {fileID: 1015167736}
   - component: {fileID: 1015167735}
   - component: {fileID: 1015167734}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: plataforma
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1001,7 +1041,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ac1ce14b6ec2c7743adc11dc109c2c92, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  inputs: []
 --- !u!4 &1230253971
 Transform:
   m_ObjectHideFlags: 0

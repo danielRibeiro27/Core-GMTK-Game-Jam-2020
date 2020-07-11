@@ -12,6 +12,8 @@ public class PlayerMovement : MonoBehaviour
     private Vector2 input;
     private Rigidbody2D rig;
     public int direcao = 1;
+    public float multiplicadorCaída = 2.5f;
+    public float multiplicadorPulo = 2f;
     void Start()
     {
         rig = GetComponent<Rigidbody2D>();
@@ -31,6 +33,7 @@ public class PlayerMovement : MonoBehaviour
     {
         //É preciso estar no FixedUpdate pois esse método trata melhor os calculos relacionados a física
         Mover();
+        Pulo();
     }
 
     /// <summary>
@@ -51,5 +54,21 @@ public class PlayerMovement : MonoBehaviour
     {
         Vector2 velocidade = new Vector2(input.x * speed, rig.velocity.y); //gera um vetor de velocidade mantendo a velocidade do Y do corpo rígido
         rig.velocity = velocidade;
+    }
+    private void Pulo()
+    {
+
+        if (rig.velocity.y < 0)
+        {
+            rig.gravityScale = multiplicadorCaída;
+        }
+        else if (rig.velocity.y > 0 && CustomInputManager.instance.GetInput("Pulo") <= 0 )
+        {
+            rig.gravityScale = multiplicadorPulo;  
+        }
+        else
+        {
+            rig.gravityScale = 1;
+        }
     }
 }

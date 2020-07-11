@@ -18,9 +18,9 @@ public class CustomInputManager : MonoBehaviour
     /// Esse é um vetor contendo todas as ações do player
     /// </summary>
     public CustomInput[] inputs = { 
-        new CustomInput("Horizontal", 0, "Horizontal", "movimento do player na horizontal", "Movimentar", "Axis"),
+        new CustomInput("Horizontal", 0, "Horizontal", "movimento do player na horizontal", "Movimentar", "AxisRaw"),
         new CustomInput("Acao", 0, "Fire", "botao de ação", "Ação", "ButtonDown"),
-        new CustomInput("Pulo", 0, "Jump", "botao de pular", "Pular", "ButtonDown")
+        new CustomInput("Pulo", 0, "Jump", "botao de pular", "Pular", "Button")
     };
 
     /// <summary>
@@ -65,9 +65,13 @@ public class CustomInputManager : MonoBehaviour
         foreach(CustomInput i in inputs)
         {
             if (i.type == "Axis")
-                i.value = Input.GetAxisRaw(i.target);
+                i.value = Input.GetAxis(i.target);
             else if (i.type == "ButtonDown")
                 i.value = Input.GetButtonDown(i.target) ? 1 : 0;
+            else if (i.type == "AxisRaw")
+                i.value = Input.GetAxisRaw(i.target);
+            else if (i.type == "Button")
+                i.value = Input.GetButton(i.target) ? 1 : 0 ;
         }
     }
 
@@ -81,7 +85,7 @@ public class CustomInputManager : MonoBehaviour
     public float GetInput(string name)
     {
         CustomInput input = Array.Find(inputs, i => i.name == name);
-        return input.value;
+        return input.value; 
     }
 
     /// <summary>
