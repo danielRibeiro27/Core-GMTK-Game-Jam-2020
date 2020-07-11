@@ -11,7 +11,7 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private float speed = 2;
     private Vector2 input;
     private Rigidbody2D rig;
-    private int direcao = 1;
+    public int direcao = 1;
     void Start()
     {
         rig = GetComponent<Rigidbody2D>();
@@ -20,6 +20,11 @@ public class PlayerMovement : MonoBehaviour
     void Update()
     {
         input = GetInput();
+
+        if (CustomInputManager.instance.GetStaticButton("Fire"))
+        {
+            CustomInputManager.instance.EmbaralharInput();
+        }
     }
 
     void FixedUpdate()
@@ -33,7 +38,8 @@ public class PlayerMovement : MonoBehaviour
     /// </summary>
     private Vector2 GetInput()
     {
-        Vector2 input = new Vector2(Input.GetAxisRaw("Horizontal"), 0);
+        Vector2 input = new Vector2(CustomInputManager.instance.GetInput("Horizontal") * direcao, 0);
+
         return input;
     }
 
