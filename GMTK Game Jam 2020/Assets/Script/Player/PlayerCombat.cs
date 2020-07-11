@@ -38,7 +38,7 @@ public class PlayerCombat : MonoBehaviour
 
     private void Update()
     {
-        if (CustomInputManager.instance.GetInput("Acao") > 0)
+        if (CustomInputManager.instance.GetInputDown("Acao"))
         {
             anim.SetTrigger("Attack");
         }

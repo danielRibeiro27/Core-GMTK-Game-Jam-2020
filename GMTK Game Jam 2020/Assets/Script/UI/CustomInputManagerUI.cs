@@ -24,7 +24,7 @@ public class CustomInputManagerUI : MonoBehaviour
 
 
             CustomInput input = inputs[i];
-            string axisKey = GetKeyOfAxis(input.target);
+            string axisKey = GetKeyOfAxis(input.target, input.type);
             texts[i].text = input.label + ": " + axisKey;
         }
     }
@@ -35,13 +35,13 @@ public class CustomInputManagerUI : MonoBehaviour
     /// </summary>
     /// <param name="axisName">O nome do axis</param>
     /// <returns>Retorna uma string descrevendo a tecla correspondente</returns>
-    private string GetKeyOfAxis(string axisName)
+    private string GetKeyOfAxis(string axisName, string type)
     {
         string key = "";
         switch (axisName)
         {
             case "Horizontal":
-                key = "A e D";
+                key = type == "AxisRaw" ? "A e D" : "A";
                 break;
             case "Fire":
                 key = "Left Shift";
@@ -50,28 +50,28 @@ public class CustomInputManagerUI : MonoBehaviour
                 key = "Space";
                 break;
             case "Axis0":
-                key = "Q e E";
+                key = type == "AxisRaw" ? "Q e E" : "Q";
                 break;
             case "Axis1":
-                key = "Z e C";
+                key = type == "AxisRaw" ? "Z e C" : "Z";
                 break;
             case "Axis2":
-                key = "J e L";
+                key = type == "AxisRaw" ? "J e L" : "J";
                 break;
             case "Axis3":
-                key = "U e O";
+                key = type == "AxisRaw" ? "U e O" : "U";
                 break;
             case "Axis4":
-                key = "1 e 2";
+                key = type == "AxisRaw" ? "1 e 2" : "1";
                 break;
             case "Axis5":
-                key = "M e .";
+                key = type == "AxisRaw" ? "M e ." : "M";
                 break;
             case "Axis6":
-                key = "X e V";
+                key = type == "AxisRaw" ? "X e V" : "X";
                 break;
             case "Axis7":
-                key = "9 e 0";
+                key = type == "AxisRaw" ? "9 e 0" : "9";
                 break;
         }
 

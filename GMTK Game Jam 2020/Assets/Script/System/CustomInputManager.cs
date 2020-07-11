@@ -20,7 +20,7 @@ public class CustomInputManager : MonoBehaviour
     public CustomInput[] inputs = { 
         new CustomInput("Horizontal", 0, "Horizontal", "movimento do player na horizontal", "Movimentar", "AxisRaw"),
         new CustomInput("Acao", 0, "Fire", "botao de ação", "Ação", "ButtonDown"),
-        new CustomInput("Pulo", 0, "Jump", "botao de pular", "Pular", "Button")
+        new CustomInput("Pulo", 0, "Jump", "botao de pular", "Pular", "ButtonDown")
     };
 
     /// <summary>
@@ -61,18 +61,18 @@ public class CustomInputManager : MonoBehaviour
 
     private void Update()
     {
-        //atualiza os valores do input
-        foreach(CustomInput i in inputs)
-        {
-            if (i.type == "Axis")
-                i.value = Input.GetAxis(i.target);
-            else if (i.type == "ButtonDown")
-                i.value = Input.GetButtonDown(i.target) ? 1 : 0;
-            else if (i.type == "AxisRaw")
-                i.value = Input.GetAxisRaw(i.target);
-            else if (i.type == "Button")
-                i.value = Input.GetButton(i.target) ? 1 : 0 ;
-        }
+        ////atualiza os valores do input
+        //foreach(CustomInput i in inputs)
+        //{
+        //    if (i.type == "Axis")
+        //        i.value = Input.GetAxis(i.target);
+        //    else if (i.type == "ButtonDown")
+        //        i.value = Input.GetButtonDown(i.target) ? 1 : 0;
+        //    else if (i.type == "AxisRaw")
+        //        i.value = Input.GetAxisRaw(i.target);
+        //    else if (i.type == "Button")
+        //        i.value = Input.GetButton(i.target) ? 1 : 0 ;
+        //}
     }
 
     #region Static Methods
@@ -82,10 +82,25 @@ public class CustomInputManager : MonoBehaviour
     /// </summary>
     /// <param name="name"></param>
     /// <returns>Retorna 1 se pressionou positivo, 0 se não pressionou nada e -1 se pressionou negativo</returns>
-    public float GetInput(string name)
+    public float GetInputAxisRaw(string name)
     {
         CustomInput input = Array.Find(inputs, i => i.name == name);
+        input.value = Input.GetAxisRaw(input.target);
         return input.value; 
+    }
+
+    public bool GetInputDown(string name)
+    {
+        CustomInput input = Array.Find(inputs, i => i.name == name);
+        input.value = Input.GetButtonDown(input.target) ? 1 : 0;
+        return input.value > 0;
+    }
+
+    public bool GetInput(string name)
+    {
+        CustomInput input = Array.Find(inputs, i => i.name == name);
+        input.value = Input.GetButton(input.target) ? 1 : 0;
+        return input.value > 0;
     }
 
     /// <summary>
