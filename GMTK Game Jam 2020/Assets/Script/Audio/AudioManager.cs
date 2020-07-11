@@ -39,5 +39,4 @@ public class AudioManager : MonoBehaviour
             Debug.LogError("Não foi possível encontrar o som com o nome " + name);
         }
     }
-
 }
