@@ -60,11 +60,11 @@ public class PlayerMovement : MonoBehaviour
 
         if (rig.velocity.y < 0)
         {
-            rig.gravityScale = multiplicadorCaída;
+            rig.gravityScale = multiplicadorCaída; // adiciona o valor de um multiplicador pré definido ao valor da gravidade
         }
-        else if (rig.velocity.y > 0 && CustomInputManager.instance.GetInput("Pulo") <= 0 )
+        else if (rig.velocity.y > 0 && CustomInputManager.instance.GetInput("Pulo") <= 0 )// compara se o jogador pulou e adiciona o valor pre definido do multiplicador de pulo ao valor da gravidade
         {
-            rig.gravityScale = multiplicadorPulo;  
+            rig.gravityScale = multiplicadorPulo; 
         }
         else
         {

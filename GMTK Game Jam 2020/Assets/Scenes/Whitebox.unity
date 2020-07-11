@@ -566,6 +566,7 @@ GameObject:
   - component: {fileID: 674258197}
   - component: {fileID: 674258200}
   - component: {fileID: 674258199}
+  - component: {fileID: 674258201}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -634,6 +635,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 5
   direcao: 1
+  "multiplicadorCa\xEDda": 2.5
+  multiplicadorPulo: 2
 --- !u!114 &674258197
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -675,7 +678,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: add2dc136e9e9e045b5a35e8878a0495, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  swordCollider: {fileID: 1342038168}
+  swordCollider: {fileID: 1342038169}
   _vida: 10
 --- !u!95 &674258200
 Animator:
@@ -696,6 +699,23 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &674258201
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 674258193}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 65b927aa8c33a3e44988d98d2da1236e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  velocidadeDoPulo: 10
+  chao:
+    serializedVersion: 2
+    m_Bits: 256
+  friccao: 0.02
 --- !u!1 &733293026
 GameObject:
   m_ObjectHideFlags: 0
@@ -707,7 +727,7 @@ GameObject:
   - component: {fileID: 733293029}
   - component: {fileID: 733293028}
   - component: {fileID: 733293027}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: plataforma (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -917,7 +937,7 @@ GameObject:
   - component: {fileID: 1015167736}
   - component: {fileID: 1015167735}
   - component: {fileID: 1015167734}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: plataforma
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1516,6 +1536,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 76f264e57b1ba9f4c911a5e01be8e02e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _vida: 0
 --- !u!114 &1793523535
 MonoBehaviour:
   m_ObjectHideFlags: 0

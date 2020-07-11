@@ -7,7 +7,7 @@ public class Pulo : MonoBehaviour
     [Range(1,100)]
     public float velocidadeDoPulo;
     public LayerMask chao;
-    public float friccao = 0.05f;
+    public float friccao;
     bool pulou;
     bool estaNoChao;
 
