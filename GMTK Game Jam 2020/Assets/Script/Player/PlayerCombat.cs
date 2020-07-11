@@ -7,7 +7,7 @@ using UnityEngine;
 /// </summary>
 public class PlayerCombat : MonoBehaviour
 {
-    [SerializeField] private GameObject swordCollider;
+    [SerializeField] private BoxCollider2D swordCollider;
     private Animator anim;
     private int vidaInicial;
 
@@ -46,6 +46,6 @@ public class PlayerCombat : MonoBehaviour
 
     public void EnableSwordCollisor(int ativar)
     {
-        swordCollider.SetActive(ativar == 1);
+        swordCollider.enabled = ativar == 1;
     }
 }

@@ -128,6 +128,19 @@ public class CustomInputManager : MonoBehaviour
     }
 
     /// <summary>
+    /// Define o target de cada input para seu default.
+    /// </summary>
+    public void ResetarInput()
+    {
+        foreach(CustomInput i in inputs)
+        {
+            i.target = i.default_target;
+        }
+
+        inputManagerUI.AtualizarInputsUI();
+    }
+
+    /// <summary>
     /// Essa função irá percorrer todos os inputs e retornará uma lista contendo todos os axis em uso pelos input
     /// </summary>
     /// <returns>Retorna uma lista de string contendo todos os axis em uso</returns>
