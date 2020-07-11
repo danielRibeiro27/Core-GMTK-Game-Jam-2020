@@ -21,7 +21,7 @@ public class PlayerMovement : MonoBehaviour
     {
         input = GetInput();
 
-        if (CustomInputManager.instance.GetStaticButton("Fire"))
+        if (CustomInputManager.instance.GetStaticButton("Cancel"))
         {
             CustomInputManager.instance.EmbaralharInput();
         }

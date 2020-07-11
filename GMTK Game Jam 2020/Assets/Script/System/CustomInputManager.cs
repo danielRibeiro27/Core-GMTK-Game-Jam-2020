@@ -17,11 +17,10 @@ public class CustomInputManager : MonoBehaviour
     /// <summary>
     /// Esse é um vetor contendo todas as ações do player
     /// </summary>
-    [SerializeField]
     public CustomInput[] inputs = { 
-        new CustomInput("Horizontal", 0, "Horizontal", "movimento do player na horizontal", "Movimentar"),
-        new CustomInput("Acao", 0, "Fire", "botao de ação", "Ação"),
-        new CustomInput("Pulo", 0, "Jump", "botao de pular", "Pular")
+        new CustomInput("Horizontal", 0, "Horizontal", "movimento do player na horizontal", "Movimentar", "Axis"),
+        new CustomInput("Acao", 0, "Fire", "botao de ação", "Ação", "ButtonDown"),
+        new CustomInput("Pulo", 0, "Jump", "botao de pular", "Pular", "ButtonDown")
     };
 
     /// <summary>
@@ -54,12 +53,21 @@ public class CustomInputManager : MonoBehaviour
             instance = this;
     }
 
+    private void Start()
+    {
+        inputManagerUI = GetComponent<CustomInputManagerUI>();
+        inputManagerUI.AtualizarInputsUI();
+    }
+
     private void Update()
     {
         //atualiza os valores do input
         foreach(CustomInput i in inputs)
         {
-            i.value = Input.GetAxis(i.target);
+            if (i.type == "Axis")
+                i.value = Input.GetAxisRaw(i.target);
+            else if (i.type == "ButtonDown")
+                i.value = Input.GetButtonDown(i.target) ? 1 : 0;
         }
     }
 
@@ -116,7 +124,6 @@ public class CustomInputManager : MonoBehaviour
             allAxisEmUso = GetAxisEmUso();
         }
 
-        inputManagerUI = GetComponent<CustomInputManagerUI>();
         inputManagerUI.AtualizarInputsUI();
     }
 

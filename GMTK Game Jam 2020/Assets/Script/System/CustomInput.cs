@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-[System.Serializable]
 public class CustomInput 
 {
     public string name { get; set; } //nome do input
@@ -10,13 +9,15 @@ public class CustomInput
     public string target { get; set; } //nome do axis que o input ira usar
     public string descricao { get; set; } //descrição do uso do input
     public string label { get; set; } //rótulo do input
+    public string type { get; set; } //o type do input, se é button down, axis, button up e etc...
 
-    public CustomInput(string _name, float _value, string _target, string _descricao, string _label)
+    public CustomInput(string _name, float _value, string _target, string _descricao, string _label, string _type)
     {
         name = _name;
         value = _value;
         target = _target;
         descricao = _descricao;
         label = _label;
+        type = _type;
     }
 }

@@ -43,6 +43,12 @@ public class CustomInputManagerUI : MonoBehaviour
             case "Horizontal":
                 key = "A e D";
                 break;
+            case "Fire":
+                key = "Left Shift";
+                break;
+            case "Jump":
+                key = "Space";
+                break;
             case "Axis0":
                 key = "Q e E";
                 break;
