@@ -47,7 +47,7 @@ public class CurtoCircuito : MonoBehaviour
     }
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.R))
+        if (CustomInputManager.instance.GetInput("Acao") > 0)
         {
             CurtoCircuitoVal += 0.2f;
         }
@@ -57,6 +57,7 @@ public class CurtoCircuito : MonoBehaviour
     {
         //inverte a direcao que o player anda
         playerMov.direcao = -1;
+        CustomInputManager.instance.EmbaralharInput();
     }
 
     /// <summary>
@@ -75,6 +76,7 @@ public class CurtoCircuito : MonoBehaviour
     {
         //inverte a direcao que o player anda
         playerMov.direcao = 1;
+        CustomInputManager.instance.ResetarInput();
     }
 
     private void UpdateUI()
