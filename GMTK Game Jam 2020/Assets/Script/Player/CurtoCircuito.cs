@@ -13,8 +13,11 @@ public class CurtoCircuito : MonoBehaviour
     [SerializeField] private Slider curtoCircuitoSlider;
 
     [Space]
-    [Header("")]
+    [Header("Settings")]
+    [SerializeField] private float duracao = 10f;
     private PlayerMovement playerMov;
+
+    private bool in_curto_circuito = false;
 
     #region Propriedades
 
@@ -47,7 +50,7 @@ public class CurtoCircuito : MonoBehaviour
     }
     private void Update()
     {
-        if (CustomInputManager.instance.GetInput("Acao") > 0)
+        if (CustomInputManager.instance.GetInputDown("Acao") && !in_curto_circuito)
         {
             CurtoCircuitoVal += 0.2f;
         }
@@ -58,6 +61,8 @@ public class CurtoCircuito : MonoBehaviour
         //inverte a direcao que o player anda
         playerMov.direcao = -1;
         CustomInputManager.instance.EmbaralharInput();
+
+        in_curto_circuito = true;
     }
 
     /// <summary>
@@ -66,10 +71,12 @@ public class CurtoCircuito : MonoBehaviour
     /// <returns></returns>
     private IEnumerator CoroutineEncerrarEfeitosCurtoCircuito()
     {
-        yield return new WaitForSeconds(3f);
+        yield return new WaitForSeconds(duracao);
 
         EncerrarEfeitosCurtoCircuito();
         CurtoCircuitoVal = 0;
+
+        in_curto_circuito = false;
     }
 
     private void EncerrarEfeitosCurtoCircuito()

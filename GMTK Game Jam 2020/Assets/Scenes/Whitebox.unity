@@ -560,12 +560,12 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 674258198}
-  - component: {fileID: 674258196}
   - component: {fileID: 674258194}
   - component: {fileID: 674258195}
   - component: {fileID: 674258197}
   - component: {fileID: 674258200}
   - component: {fileID: 674258199}
+  - component: {fileID: 674258196}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -619,7 +619,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 0
+  m_Constraints: 4
 --- !u!114 &674258196
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -634,6 +634,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 5
   direcao: 1
+  velocidadeDoPulo: 10
+  chao:
+    serializedVersion: 2
+    m_Bits: 256
+  friccao: 0.05
+  "multiplicadorCa\xEDda": 2.5
+  multiplicadorPulo: 2
 --- !u!114 &674258197
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -655,7 +662,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 674258193}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -1.32, y: 0, z: 0}
+  m_LocalPosition: {x: -8.1, y: -3.71, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1732861732}
@@ -675,7 +682,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: add2dc136e9e9e045b5a35e8878a0495, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  swordCollider: {fileID: 1342038168}
+  swordCollider: {fileID: 1342038169}
   _vida: 10
 --- !u!95 &674258200
 Animator:
@@ -707,7 +714,7 @@ GameObject:
   - component: {fileID: 733293029}
   - component: {fileID: 733293028}
   - component: {fileID: 733293027}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: plataforma (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -917,7 +924,7 @@ GameObject:
   - component: {fileID: 1015167736}
   - component: {fileID: 1015167735}
   - component: {fileID: 1015167734}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: plataforma
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1497,9 +1504,9 @@ GameObject:
   - component: {fileID: 1793523536}
   - component: {fileID: 1793523535}
   - component: {fileID: 1793523534}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Enemy
-  m_TagString: Untagged
+  m_TagString: Enemys
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1516,6 +1523,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 76f264e57b1ba9f4c911a5e01be8e02e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _vida: 5
 --- !u!114 &1793523535
 MonoBehaviour:
   m_ObjectHideFlags: 0
