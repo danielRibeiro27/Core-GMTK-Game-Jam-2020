@@ -660,10 +660,11 @@ MonoBehaviour:
   chao:
     serializedVersion: 2
     m_Bits: 256
-  friccao: 0.05
-  atordoado: 0
   "multiplicadorCa\xEDda": 2.5
   multiplicadorPulo: 2
+  overlapSize: {x: 0.75, y: 0.15}
+  overlapPivot: {fileID: 1827969717}
+  atordoado: 0
 --- !u!114 &674258197
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -691,6 +692,7 @@ Transform:
   m_Children:
   - {fileID: 1732861732}
   - {fileID: 298969131}
+  - {fileID: 1827969717}
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1809,6 +1811,36 @@ Transform:
   - {fileID: 228387879}
   m_Father: {fileID: 0}
   m_RootOrder: 8
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1827969716
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1827969717}
+  m_Layer: 0
+  m_Name: OverlapPivot
+  m_TagString: Untagged
+  m_Icon: {fileID: 7866945982896999795, guid: 0000000000000000d000000000000000, type: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1827969717
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1827969716}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: -0.374, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 674258198}
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1829649072
 GameObject:
