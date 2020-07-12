@@ -53,7 +53,7 @@ public class PlayerCombat : MonoBehaviour
 
     private void Start()
     {
-        anim = GetComponent<Animator>();
+        anim = GetComponentInChildren<Animator>();
         playerMov = GetComponent<PlayerMovement>();
         rig = GetComponent<Rigidbody2D>();
 
@@ -86,7 +86,9 @@ public class PlayerCombat : MonoBehaviour
     IEnumerator Invencivel()
     {
         invencivel = true;
+        anim.SetBool("Blink", true);
         yield return new WaitForSeconds(tempoInvencivel);
+        anim.SetBool("Blink", false);
         invencivel = false;
     }
     IEnumerator Knockback(Vector2 dir)
