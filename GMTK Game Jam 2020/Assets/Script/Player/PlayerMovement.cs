@@ -25,6 +25,7 @@ public class PlayerMovement : MonoBehaviour
     public float friccao = 0.05f;
     private bool pulou;
     private bool estaNoChao;
+    public bool atordoado = false;
     public float multiplicadorCaída = 2.5f;
     public float multiplicadorPulo = 2f;
 
@@ -40,8 +41,22 @@ public class PlayerMovement : MonoBehaviour
 
     void Update()
     {
+        if (atordoado)
+        {
+            input = Vector2.zero;
+            return;
+        }
+
         input = GetMovementInput();
         GetJumpInput();
+
+        if(input.x < 0)
+        {
+            transform.localScale = new Vector2(-1, transform.localScale.y);
+        }
+        else if(input.x > 0){
+            transform.localScale = new Vector2(1, transform.localScale.y);
+        }
     }
 
     void FixedUpdate()
@@ -113,11 +128,16 @@ public class PlayerMovement : MonoBehaviour
     /// </summary>
     private Vector2 GetMovementInput()
     {
-        Vector2 input = new Vector2(CustomInputManager.instance.GetInputAxisRaw("Horizontal"), 0);
+        Vector2 input = new Vector2(CustomInputManager.instance.GetInputAxisRaw("Horizontal") * direcao, 0);
 
         return input;
     }
 
     #endregion
 
+
+    #region Outros
+
+
+    #endregion
 }
