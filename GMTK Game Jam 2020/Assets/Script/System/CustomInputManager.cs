@@ -61,18 +61,7 @@ public class CustomInputManager : MonoBehaviour
 
     private void Update()
     {
-        ////atualiza os valores do input
-        //foreach(CustomInput i in inputs)
-        //{
-        //    if (i.type == "Axis")
-        //        i.value = Input.GetAxis(i.target);
-        //    else if (i.type == "ButtonDown")
-        //        i.value = Input.GetButtonDown(i.target) ? 1 : 0;
-        //    else if (i.type == "AxisRaw")
-        //        i.value = Input.GetAxisRaw(i.target);
-        //    else if (i.type == "Button")
-        //        i.value = Input.GetButton(i.target) ? 1 : 0 ;
-        //}
+
     }
 
     #region Static Methods
