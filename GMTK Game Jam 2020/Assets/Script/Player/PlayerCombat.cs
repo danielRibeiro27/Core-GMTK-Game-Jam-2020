@@ -8,11 +8,6 @@ using UnityEngine;
 public class PlayerCombat : MonoBehaviour
 {
     [Space]
-    [Header("Slots")]
-
-    [SerializeField] private BoxCollider2D swordCollider;
-
-    [Space]
     [Header("Settings")]
 
     [SerializeField] private float knockbackForce;
@@ -107,11 +102,6 @@ public class PlayerCombat : MonoBehaviour
     private void Morrer()
     {
         Destroy(gameObject);
-    }
-
-    public void EnableSwordCollisor(int ativar)
-    {
-        swordCollider.enabled = ativar == 1;
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
