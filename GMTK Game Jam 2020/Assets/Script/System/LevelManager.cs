@@ -10,15 +10,16 @@ using UnityEngine;
 public class LevelManager : MonoBehaviour
 {
     [SerializeField] private GameObject endGameScreen;
-
-    public float seconds = 0;
+    [SerializeField] private float timeToEnd;
+    private float seconds = 0;
     private void Start()
     {
+        seconds = 0;
     }
     private void Update()
     {
         seconds += Time.deltaTime;
-        if(seconds > 10)
+        if(seconds > timeToEnd)
         {
             EndGame();
         }
