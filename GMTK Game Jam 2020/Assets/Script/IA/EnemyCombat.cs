@@ -5,6 +5,7 @@ using UnityEngine;
 public class EnemyCombat : MonoBehaviour
 {
     private int vidaInicial;
+    public int dano = 1;
 
     #region Propriedades
 

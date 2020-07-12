@@ -8,12 +8,36 @@ using UnityEngine;
 /// </summary>
 public class PlayerMovement : MonoBehaviour
 {
+    [Space]
+    [Header("Movimentação")]
     [SerializeField] private float speed = 2;
     private Vector2 input;
     private Rigidbody2D rig;
     public int direcao = 1;
-    public float multiplicadorCaída = 2.5f;
-    public float multiplicadorPulo = 2f;
+
+
+    [Space]
+    [Header("Jump")]
+    [Range(1, 100)] 
+    [SerializeField] private float velocidadeDoPulo;
+    [SerializeField] private LayerMask chao;
+    [SerializeField] private float multiplicadorCaída = 2.5f;
+    [SerializeField] private float multiplicadorPulo = 2f;
+    [SerializeField] private Vector2 overlapSize;
+    [SerializeField] private Transform overlapPivot;
+    private bool pulou;
+    private bool estaNoChao = true;
+    private Vector2 tamanhoPlayer;
+
+
+    [Space]
+    [Header("Outros")]
+    [HideInInspector] public bool atordoado = false;
+
+    private void Awake()
+    {
+        tamanhoPlayer = GetComponent<BoxCollider2D>().size;
+    }
     void Start()
     {
         rig = GetComponent<Rigidbody2D>();
@@ -22,18 +46,15 @@ public class PlayerMovement : MonoBehaviour
     void Update()
     {
         input = GetInput();
-
-        if (CustomInputManager.instance.GetStaticButton("Cancel"))
-        {
-            CustomInputManager.instance.EmbaralharInput();
-        }
+        GetJumpInput();
     }
 
     void FixedUpdate()
     {
         //É preciso estar no FixedUpdate pois esse método trata melhor os calculos relacionados a física
         Mover();
-        Pulo();
+        Jump();
+        JumpPyshics();
     }
 
     /// <summary>
@@ -55,14 +76,17 @@ public class PlayerMovement : MonoBehaviour
         Vector2 velocidade = new Vector2(input.x * speed, rig.velocity.y); //gera um vetor de velocidade mantendo a velocidade do Y do corpo rígido
         rig.velocity = velocidade;
     }
-    private void Pulo()
+
+    #region Jump
+
+    private void JumpPyshics()
     {
 
         if (rig.velocity.y < 0)
         {
             rig.gravityScale = multiplicadorCaída; // adiciona o valor de um multiplicador pré definido ao valor da gravidade
         }
-        else if (rig.velocity.y > 0 && !CustomInputManager.instance.GetInput("Pulo") )// compara se o jogador pulou e adiciona o valor pre definido do multiplicador de pulo ao valor da gravidade
+        else if (rig.velocity.y > 0 && !CustomInputManager.instance.GetInput("Pulo"))// compara se o jogador pulou e adiciona o valor pre definido do multiplicador de pulo ao valor da gravidade
         {
             rig.gravityScale = multiplicadorPulo; 
         }
@@ -71,4 +95,38 @@ public class PlayerMovement : MonoBehaviour
             rig.gravityScale = 1;
         }
     }
+
+    private void GetJumpInput()
+    {
+        if (CustomInputManager.instance.GetInputDown("Pulo") && estaNoChao == true)
+        {
+            pulou = true;
+        }
+    }
+
+    private void Jump()
+    {
+        if (pulou == true)
+        {
+            rig.AddForce(Vector2.up * velocidadeDoPulo, ForceMode2D.Impulse);
+            pulou = false;
+            estaNoChao = false;
+        }
+        else
+        {
+            estaNoChao = Physics2D.OverlapBox(overlapPivot.position, overlapSize, 0, chao);
+        }
+    }
+
+    #endregion
+
+
+    #region Gizmos
+
+    private void OnDrawGizmosSelected()
+    {
+        Gizmos.DrawWireCube(overlapPivot.position, overlapSize);
+    }
+
+    #endregion
 }
