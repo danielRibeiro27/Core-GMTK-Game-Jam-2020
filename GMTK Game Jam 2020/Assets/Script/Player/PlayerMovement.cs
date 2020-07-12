@@ -41,7 +41,7 @@ public class PlayerMovement : MonoBehaviour
     /// </summary>
     private Vector2 GetInput()
     {
-        Vector2 input = new Vector2(CustomInputManager.instance.GetInput("Horizontal") * direcao, 0);
+        Vector2 input = new Vector2(CustomInputManager.instance.GetInputAxisRaw("Horizontal") * direcao, 0);
 
         return input;
     }
@@ -62,7 +62,7 @@ public class PlayerMovement : MonoBehaviour
         {
             rig.gravityScale = multiplicadorCaída; // adiciona o valor de um multiplicador pré definido ao valor da gravidade
         }
-        else if (rig.velocity.y > 0 && CustomInputManager.instance.GetInput("Pulo") <= 0 )// compara se o jogador pulou e adiciona o valor pre definido do multiplicador de pulo ao valor da gravidade
+        else if (rig.velocity.y > 0 && !CustomInputManager.instance.GetInput("Pulo") )// compara se o jogador pulou e adiciona o valor pre definido do multiplicador de pulo ao valor da gravidade
         {
             rig.gravityScale = multiplicadorPulo; 
         }
