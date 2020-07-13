@@ -29,10 +29,15 @@ public class PlayerMovement : MonoBehaviour
     private bool estaNoChao = true;
     private Vector2 tamanhoPlayer;
 
+    [Space]
+    [Header("Animacao")]
+    private Animator anim;
 
     [Space]
     [Header("Outros")]
     [HideInInspector] public bool atordoado = false;
+    private Vector3 lookin_right;
+    private Vector3 lookin_left;
 
     private void Awake()
     {
@@ -41,12 +46,17 @@ public class PlayerMovement : MonoBehaviour
     void Start()
     {
         rig = GetComponent<Rigidbody2D>();
+        anim = GetComponentInChildren<Animator>();
+
+        lookin_right = new Vector3(transform.localScale.x, transform.localScale.y, transform.localScale.z);
+        lookin_left = new Vector3(-transform.localScale.x, transform.localScale.y, transform.localScale.z);
     }
 
     void Update()
     {
         input = GetInput();
         GetJumpInput();
+        SetAnimations();
     }
 
     void FixedUpdate()
@@ -57,12 +67,20 @@ public class PlayerMovement : MonoBehaviour
         JumpPyshics();
     }
 
+    #region Movement
+
     /// <summary>
     /// Pega o input do usuário
     /// </summary>
     private Vector2 GetInput()
     {
         Vector2 input = new Vector2(CustomInputManager.instance.GetInputAxisRaw("Horizontal") * direcao, 0);
+
+        //set a a direcao que o personagem esta olhando
+        if(input.x != 0)
+        {
+            transform.localScale = input.x > 0 ? lookin_right : lookin_left;
+        }
 
         return input;
     }
@@ -76,6 +94,21 @@ public class PlayerMovement : MonoBehaviour
         Vector2 velocidade = new Vector2(input.x * speed, rig.velocity.y); //gera um vetor de velocidade mantendo a velocidade do Y do corpo rígido
         rig.velocity = velocidade;
     }
+
+    #endregion
+
+    #region GFX
+
+    private void SetAnimations()
+    {
+        //recebe 1 se estiver se movendo para a direita ou para a esquerda
+        float moving = rig.velocity.x > 0.1 || rig.velocity.x < -0.1 ? 1 : 0;
+
+        anim.SetFloat("VelocityY", rig.velocity.y);
+        anim.SetFloat("VelocityX", moving);
+    }
+
+    #endregion
 
     #region Jump
 
@@ -119,7 +152,6 @@ public class PlayerMovement : MonoBehaviour
     }
 
     #endregion
-
 
     #region Gizmos
 

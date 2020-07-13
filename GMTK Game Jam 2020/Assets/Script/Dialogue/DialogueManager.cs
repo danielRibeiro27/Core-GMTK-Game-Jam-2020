@@ -8,24 +8,28 @@ public class DialogueManager : MonoBehaviour
 {
     public TextMeshProUGUI nameTxt;
     public TextMeshProUGUI dialogueTxt;
-    public Animator anim;
+    private Animator anim;
     public static DialogueManager instance;
+    public bool currentDialogueFinished = false;
     private void Awake()
     {
         if (instance == null)
             instance = this;
+
+        sentences = new Queue<string>();
+        anim = GameObject.Find("DialogueBox").GetComponent<Animator>();
     }
 
     private Queue<string> sentences;
 
     private void Start()
     {
-        sentences = new Queue<string>();
     }
 
     public void StartDialogue(Dialogue dialogue)
     {
         anim.SetBool("isOpen", true);
+        currentDialogueFinished = false;
         nameTxt.text = dialogue.name;
 
         sentences.Clear();
@@ -63,7 +67,7 @@ public class DialogueManager : MonoBehaviour
 
     private void EndDialogue()
     {
-        Debug.Log("End of conversation");
         anim.SetBool("isOpen", false);
+        currentDialogueFinished = true;
     }
 }

@@ -1,0 +1,118 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &892898910261941129
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 892898910261941135}
+  - component: {fileID: 892898910261941132}
+  - component: {fileID: 892898910261941134}
+  m_Layer: 0
+  m_Name: Level01Manager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &892898910261941135
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 892898910261941129}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.03085269, y: -2.4576883, z: -0.31804597}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &892898910261941132
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 892898910261941129}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a86ce3e487076e84b8fd9825fd8e2cce, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dialogue:
+  - sentences:
+    - Hey, wake up.
+    - ...
+    - "This is why she deactivated you, you\u2019re way too lazy, A.T.L.A.S 02."
+    name: ???
+  - sentences:
+    - This voice...
+    name: A.T.L.A.S 02
+  - sentences:
+    - "Good morning, sunshine, don\u2019t you see the chaos around us? Get  this
+      metal skeleton of yours up already, we need to get out of here. And good thing
+      you remembered me. Yes it\u2019s me, your biggest and bestest CORE assistant,
+      Blue V."
+    name: ???
+  - sentences:
+    - 'Energy restored. Loss of functions: basic. Memory repair corrupted. A.T.L.A.S
+      02 active.'
+    name: Blue V
+  - sentences:
+    - Activate CORE INFINITUM synchronization.
+    name: A.T.L.A.S 02
+  - sentences:
+    - "What\u2019d you say?"
+    name: Blue V
+  - sentences:
+    - Activate CORE INFINITUM synchronization.
+    name: A.T.L.A.S 02
+  - sentences:
+    - Forget it, dear.
+    - Access denied, data source incompatibility. Generating temporary data source
+      and system restore.
+    name: Blue V
+  - sentences:
+    - ...
+    name: 
+  - sentences:
+    - A.T.L.A.S 02 UNIT activated for simple task aid. Thank you for choosing OLYMPUS
+      TECH.
+    name: A.T.L.A.S 02
+  - sentences:
+    - Temporary database generated.
+    name: Blue V
+  - sentences:
+    - "\u201CVALKYRIE PROTOCOL\u201D ACTIVATED\r\nEVACUATION TIME: [DEFINIR] MINUTES\r"
+    name: 
+  - sentences:
+    - "I don\u2019t like this protocol, Blue."
+    name: A.T.L.A.S 02
+  - sentences:
+    - "\u201CLike\u201D? Interesting... So, something very serious happened here.
+      I\u2019m still trying to access the monitoring terminal to get a better grasp
+      of the situation. In the meantime, find us an exit, A2."
+    name: Blue V
+  - sentences:
+    - 'A2? I like that. Right, Blue! '
+    name: A.T.L.A.S 02
+  dialogueName: "Primeiro di\xE1logo"
+  conversationEnded: 0
+--- !u!114 &892898910261941134
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 892898910261941129}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8fc6bb7821658e04c84a58cbaa728858, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  blackPanel: {fileID: 0}

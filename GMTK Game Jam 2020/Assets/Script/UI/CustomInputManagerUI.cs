@@ -6,23 +6,21 @@ using UnityEngine;
 public class CustomInputManagerUI : MonoBehaviour
 {
     [SerializeField]
-    private List<TextMeshProUGUI> texts;
+    private TextMeshProUGUI txtMovimento;
+    [SerializeField]
+    private TextMeshProUGUI txtAcao;
+    [SerializeField]
+    private TextMeshProUGUI txtPulo;
 
     /// <summary>
     /// Esse método atualiza a UI de esquema de controles.
     /// </summary>
     public void AtualizarInputsUI()
     {
+        List<TextMeshProUGUI> texts = new List<TextMeshProUGUI>() { txtMovimento, txtAcao, txtPulo };
         CustomInput[] inputs = CustomInputManager.instance.inputs;
         for(int i = 0; i < inputs.Length; i++)
         {
-            if(i > texts.Count)
-            {
-                Debug.LogWarning("Existem mais inputs do que input text.");
-                return;
-            }
-
-
             CustomInput input = inputs[i];
             string axisKey = GetKeyOfAxis(input.target, input.type);
             texts[i].text = input.label + ": " + axisKey;

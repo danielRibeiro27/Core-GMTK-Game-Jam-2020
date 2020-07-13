@@ -10,8 +10,6 @@ public class PlayerCombat : MonoBehaviour
     [Space]
     [Header("Settings")]
 
-    [SerializeField] private float knockbackForce;
-    [SerializeField] private float knockbackDuration;
     [SerializeField] private float tempoInvencivel = 1f;
     [SerializeField] private float tempo_atordoado = 0.2f;
 
@@ -63,11 +61,11 @@ public class PlayerCombat : MonoBehaviour
         }
     }
 
-    public void TomarDano(int dano, Vector2 dir_to_enemy)
+    public void TomarDano(int dano, Vector2 dir_to_enemy, float knockbackForce, float knockbackForceUp, float knockbackDuration)
     {
         Vida -= dano;
 
-        StartCoroutine(Knockback(dir_to_enemy));
+        StartCoroutine(Knockback(dir_to_enemy.normalized, knockbackForce, knockbackForceUp, knockbackDuration));
         StartCoroutine(Invencivel());
         StartCoroutine(Atordoado());
     }
@@ -86,14 +84,16 @@ public class PlayerCombat : MonoBehaviour
         anim.SetBool("Blink", false);
         invencivel = false;
     }
-    IEnumerator Knockback(Vector2 dir)
+    IEnumerator Knockback(Vector2 dir, float knockbackForce, float knockbackForceUp, float knockbackDuration)
     {
         float timer = 0;
 
         while(knockbackDuration > timer)
         {
             timer += Time.deltaTime;
-            rig.AddForce(dir * knockbackForce);
+
+            Vector2 final_force = new Vector2(dir.x * knockbackForce, knockbackForceUp);
+            rig.AddForce(final_force);
         }
 
         yield return 0;
@@ -113,7 +113,7 @@ public class PlayerCombat : MonoBehaviour
             Vector2 dir_player_to_enemy = (transform.position - collision.transform.position).normalized;
             dir_player_to_enemy.y = 0;
 
-            TomarDano(ec.dano, dir_player_to_enemy);
+            TomarDano(ec.dano, dir_player_to_enemy, ec.knockbackForce, ec.knockbackForceUp, ec.knockbackDuration);
         }
     }
 }

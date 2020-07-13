@@ -4,16 +4,36 @@ using UnityEngine;
 
 public class DialogueTrigger : MonoBehaviour
 {
-    public Dialogue dialogue;
-
+    public Dialogue[] dialogue;
+    public string dialogueName = "Primeiro diálogo";
+    private int currentIndex = 0;
+    public bool conversationEnded = false;
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.F))
-            TriggerDialogue();
+        AguardarFinish();
+
+        if(currentIndex >= dialogue.Length)
+        {
+            conversationEnded = true;
+        }
     }
 
-    public void TriggerDialogue()
+    public void TriggerDialogue(int index = 0)
     {
-        DialogueManager.instance.StartDialogue(dialogue);
+        currentIndex = index;
+        if(index < dialogue.Length)
+        {
+            DialogueManager.instance.StartDialogue(dialogue[index]);
+        }
+    }
+
+    private void AguardarFinish()
+    {
+        if (DialogueManager.instance.currentDialogueFinished)
+        {
+            //ir para o proximo dialogo
+            currentIndex++;
+            TriggerDialogue(currentIndex);
+        }
     }
 }

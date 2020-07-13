@@ -4,9 +4,13 @@ using UnityEngine;
 
 public class EnemyCombat : MonoBehaviour
 {
-    private int vidaInicial;
+    [SerializeField] public float knockbackForce;
+    [SerializeField] public float knockbackForceUp;
+    [SerializeField] public float knockbackDuration;
     public int dano = 1;
 
+    private int vidaInicial;
+    
     #region Propriedades
 
     [SerializeField]
@@ -43,6 +47,11 @@ public class EnemyCombat : MonoBehaviour
 
     private void Morrer()
     {
+        if (GameObject.Find("Level01Manager"))
+        {
+            Level01Manager lv = GameObject.Find("Level01Manager").GetComponent<Level01Manager>();
+            lv.criaturas_derrotadas++;
+        }
         Destroy(gameObject);
     }
 
@@ -51,5 +60,8 @@ public class EnemyCombat : MonoBehaviour
         Vida -= damage;
     }
 
-
+    public void Attack()
+    {
+        Debug.Log("Attacking !");
+    }
 }
