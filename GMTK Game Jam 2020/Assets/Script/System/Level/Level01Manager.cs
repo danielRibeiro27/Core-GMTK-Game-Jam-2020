@@ -44,6 +44,7 @@ public class Level01Manager : MonoBehaviour
     {
         //ao começar o jogo, abrir um painel preto com a caixa de dialogo inicial
         PrimeiraConversa();
+        player = GameObject.Find("Player").GetComponent<PlayerMovement>();
     }
 
     private void Update()
@@ -72,7 +73,7 @@ public class Level01Manager : MonoBehaviour
         }
     }
 
-    private void StartConversation(string triggerName)
+    private void StartConversation(string triggerName, bool? canMove = null, bool? canInput = null)
     {
         //busca o trigger corespondente
         DialogueTrigger[] triggers = FindObjectsOfType<DialogueTrigger>();
@@ -89,7 +90,7 @@ public class Level01Manager : MonoBehaviour
         //ativa os dialogos um após o outro
         if(targetTrigger != null)
         {
-            targetTrigger.TriggerDialogue();
+            targetTrigger.TriggerDialogue(canMove, canInput);
             currentTrigger = targetTrigger;
         }
 
@@ -109,7 +110,7 @@ public class Level01Manager : MonoBehaviour
 
     private void TerceiraConversa()
     {
-        StartConversation("Terceira conversa");
+        StartConversation("Terceira conversa", true, false);
         terceira_conversa_iniciada = true;
     }
 
@@ -117,17 +118,10 @@ public class Level01Manager : MonoBehaviour
     {
         quarta_conversa_iniciada = true;
 
-        player = GameObject.Find("Player").GetComponent<PlayerMovement>();
         StartCoroutine(QuartaConversaEnumerator());
-        StartCoroutine(QuartaConversaMover());
-    }
-    IEnumerator QuartaConversaMover()
-    {
-        while (true)
-        {
-            player.Mover(direcao, velocidade);
-            yield return null;
-        }
+        player.velocidadeMoverAuto = 5f;
+        player.direcaoMoverAuto = Vector2.right;
+        player.moverAuto = true;
     }
     IEnumerator QuartaConversaEnumerator()
     {

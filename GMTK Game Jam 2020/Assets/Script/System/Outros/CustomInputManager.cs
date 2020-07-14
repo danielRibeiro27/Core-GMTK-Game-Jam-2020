@@ -43,6 +43,8 @@ public class CustomInputManager : MonoBehaviour
 
     private CustomInputManagerUI inputManagerUI;
 
+    public bool managerCanInput = true;
+
     #endregion
 
     public static CustomInputManager instance;
@@ -75,21 +77,21 @@ public class CustomInputManager : MonoBehaviour
     {
         CustomInput input = Array.Find(inputs, i => i.name == name);
         input.value = Input.GetAxisRaw(input.target);
-        return input.value; 
+        return GameManager.CanInput ? input.value : 0; 
     }
 
     public bool GetInputDown(string name)
     {
         CustomInput input = Array.Find(inputs, i => i.name == name);
         input.value = Input.GetButtonDown(input.target) ? 1 : 0;
-        return input.value > 0;
+        return GameManager.CanInput ? input.value > 0: false;
     }
 
     public bool GetInput(string name)
     {
         CustomInput input = Array.Find(inputs, i => i.name == name);
         input.value = Input.GetButton(input.target) ? 1 : 0;
-        return input.value > 0;
+        return GameManager.CanInput ? input.value > 0 : false;
     }
 
     /// <summary>

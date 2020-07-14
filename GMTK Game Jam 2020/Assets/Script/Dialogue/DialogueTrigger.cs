@@ -19,9 +19,13 @@ public class DialogueTrigger : MonoBehaviour
             {
                 conversationEnded = true;
                 GameManager.CanInput = true;
+                GameManager.CanMove = true;
 
                 if (dialogueName == "Terceira conversa")
                 {
+                    GameManager.CanInput = false;
+                    GameManager.CanMove = true;
+
                     Level01Manager lvl = FindObjectOfType<Level01Manager>();
                     if (lvl.terceira_conversa_iniciada && !lvl.quarta_conversa_iniciada)
                     {
@@ -34,9 +38,10 @@ public class DialogueTrigger : MonoBehaviour
         }
     }
 
-    public void TriggerDialogue(int index = 0)
+    public void TriggerDialogue(bool? canMove, bool? canInput, int index = 0)
     {
-        GameManager.CanInput = false;
+        GameManager.CanInput = canInput != null ? (bool)canInput : GameManager.CanInput; //se especificar um canInput, usa ele, senao, mantem o valor
+        GameManager.CanMove = canMove != null ? (bool)canMove : GameManager.CanMove; //se especificar um canMove, usa ele, senao, mantem o valor
         currentIndex = index;
         foi_utilizado = true;
         if(index < dialogue.Length)
@@ -54,7 +59,7 @@ public class DialogueTrigger : MonoBehaviour
             {
                 //ir para o proximo dialogo
                 currentIndex++;
-                TriggerDialogue(currentIndex);
+                TriggerDialogue(null, null, currentIndex);
             }
         }
     }

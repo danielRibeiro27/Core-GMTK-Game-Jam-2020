@@ -39,6 +39,10 @@ public class PlayerMovement : MonoBehaviour
     private Vector3 lookin_right;
     private Vector3 lookin_left;
 
+    public bool moverAuto = false;
+    public Vector2 direcaoMoverAuto = new Vector2(1, 0);
+    public float velocidadeMoverAuto;
+
     private void Awake()
     {
         tamanhoPlayer = GetComponent<BoxCollider2D>().size;
@@ -55,19 +59,12 @@ public class PlayerMovement : MonoBehaviour
     void Update()
     {
         SetAnimations();
-
-        if (!GameManager.canInput)
-            return;
-
         input = GetInput();
         GetJumpInput();
     }
 
     void FixedUpdate()
     {
-        if (!GameManager.canInput)
-            return;
-
         //É preciso estar no FixedUpdate pois esse método trata melhor os calculos relacionados a física
         Mover();
         Jump();
@@ -98,6 +95,15 @@ public class PlayerMovement : MonoBehaviour
     /// <param name="direcao">o parâmetro direcao irá definir se a direção estará invertida ou não</param>
     public void Mover(Vector2 direcao = new Vector2(), float? velocidade = null)
     {
+        if (!GameManager.CanMove)
+            return;
+
+        if (moverAuto)
+        {
+            rig.velocity = new Vector2(direcaoMoverAuto.x * velocidadeMoverAuto, rig.velocity.y);
+            return;
+        }
+
         Vector2 final_direcao;
         float final_speed = velocidade != null ? (float) velocidade : speed;
 
@@ -153,6 +159,9 @@ public class PlayerMovement : MonoBehaviour
 
     private void Jump()
     {
+        if (!GameManager.CanMove)
+            return;
+
         if (pulou == true)
         {
             rig.AddForce(Vector2.up * velocidadeDoPulo, ForceMode2D.Impulse);

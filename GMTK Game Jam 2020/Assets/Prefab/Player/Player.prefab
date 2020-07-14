@@ -91,6 +91,9 @@ MonoBehaviour:
   overlapSize: {x: 0.86, y: 0.2}
   overlapPivot: {fileID: 8629346524509834727}
   atordoado: 0
+  moverAuto: 0
+  direcaoMoverAuto: {x: 1, y: 0}
+  velocidadeMoverAuto: 0
 --- !u!61 &8629346524758777051
 BoxCollider2D:
   m_ObjectHideFlags: 0

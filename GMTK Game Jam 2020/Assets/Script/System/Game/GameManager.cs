@@ -5,7 +5,9 @@ using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
-    public static bool canInput = false;
+    private Rigidbody2D player;
+
+    private static bool canInput = false;
     public static bool CanInput
     {
         get
@@ -17,15 +19,40 @@ public class GameManager : MonoBehaviour
         {
             canInput = value;
 
-            if(CanInput == false)
+            //se ir para falso resetar as velocidades por 1 frame
+            if (!CanInput)
             {
                 GameObject.Find("Player").GetComponent<Rigidbody2D>().velocity = Vector2.zero;
             }
         }
     }
+
+    private static bool canMove = false;
+    public static bool CanMove
+    {
+        get
+        {
+            return canMove;
+        }
+
+        set
+        {
+            canMove = value;
+
+        }
+    }
+
+    private void Start()
+    {
+        player = GameObject.Find("Player").GetComponent<Rigidbody2D>();
+    }
     private void Update()
     {
-        Debug.Log(CanInput);
+    }
+    private void FixedUpdate()
+    {
+        if (!CanMove)
+            player.velocity = Vector2.zero;
     }
     public void TrocarCena(int index)
     {
