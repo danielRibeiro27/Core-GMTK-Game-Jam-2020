@@ -10,9 +10,30 @@ public class Level01Manager : MonoBehaviour
     public static Level01Manager instance;
 
     [SerializeField] private GameObject blackPanel;
-    [HideInInspector] public int criaturas_derrotadas = 0;
     private DialogueTrigger currentTrigger = null;
+
+    [Header("Primeira conversa")]
+    private bool primeira_conversa_iniciada = false;
+
+    [Space]
+    [Header("Segunda conversa")]
+    [HideInInspector] public int criaturas_derrotadas = 0;
     private bool segunda_conversa_iniciada = false;
+
+    [Space]
+    [Header("Terceira conversa")]
+    [SerializeField] private Transform overlapPoint;
+    [SerializeField] private Vector2 overlapSize;
+    [SerializeField] private LayerMask oqEPlayer;
+    public bool terceira_conversa_iniciada = false;
+
+    [Space]
+    [Header("Quarta conversa")]
+    [SerializeField] private Vector2 direcao;
+    [SerializeField] private float velocidade;
+    public bool quarta_conversa_iniciada = false;
+    private PlayerMovement player;
+
 
     private void Awake()
     {
@@ -22,22 +43,32 @@ public class Level01Manager : MonoBehaviour
     private void Start()
     {
         //ao começar o jogo, abrir um painel preto com a caixa de dialogo inicial
-        blackPanel.SetActive(true);
-        StartConversation("Primeira conversa");
+        PrimeiraConversa();
     }
 
     private void Update()
     {
+        //fechar conversa
         if (currentTrigger.conversationEnded)
         {
             blackPanel.SetActive(false);
             currentTrigger.conversationEnded = false;
         }
 
+        //segunda conversa ao derrotar as criaturas
         if(criaturas_derrotadas >= 2 && !segunda_conversa_iniciada)
         {
-            StartConversation("Segunda conversa");
-            segunda_conversa_iniciada = true;
+            SegundaConversa();
+        }
+
+        if (!terceira_conversa_iniciada)
+        {
+            Collider2D col = Physics2D.OverlapBox(overlapPoint.position, overlapSize, 0, oqEPlayer);
+            if(col != null)
+            {
+                if (col.tag == "Player")
+                    TerceiraConversa();
+            }
         }
     }
 
@@ -64,4 +95,50 @@ public class Level01Manager : MonoBehaviour
 
     }
   
+    private void PrimeiraConversa()
+    {
+        blackPanel.SetActive(true);
+        StartConversation("Primeira conversa");
+    }
+
+    private void SegundaConversa()
+    {
+        StartConversation("Segunda conversa");
+        segunda_conversa_iniciada = true;
+    }
+
+    private void TerceiraConversa()
+    {
+        StartConversation("Terceira conversa");
+        terceira_conversa_iniciada = true;
+    }
+
+    public void QuartaConversa()
+    {
+        quarta_conversa_iniciada = true;
+
+        player = GameObject.Find("Player").GetComponent<PlayerMovement>();
+        StartCoroutine(QuartaConversaEnumerator());
+        StartCoroutine(QuartaConversaMover());
+    }
+    IEnumerator QuartaConversaMover()
+    {
+        while (true)
+        {
+            player.Mover(direcao, velocidade);
+            yield return null;
+        }
+    }
+    IEnumerator QuartaConversaEnumerator()
+    {
+        yield return new WaitForSeconds(2f);
+
+        StartConversation("Quarta conversa");
+    }
+
+
+    private void OnDrawGizmosSelected()
+    {
+        Gizmos.DrawWireCube(overlapPoint.position, overlapSize);
+    }
 }

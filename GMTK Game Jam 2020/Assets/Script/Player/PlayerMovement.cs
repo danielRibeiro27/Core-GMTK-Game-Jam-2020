@@ -54,13 +54,20 @@ public class PlayerMovement : MonoBehaviour
 
     void Update()
     {
+        SetAnimations();
+
+        if (!GameManager.canInput)
+            return;
+
         input = GetInput();
         GetJumpInput();
-        SetAnimations();
     }
 
     void FixedUpdate()
     {
+        if (!GameManager.canInput)
+            return;
+
         //É preciso estar no FixedUpdate pois esse método trata melhor os calculos relacionados a física
         Mover();
         Jump();
@@ -89,10 +96,17 @@ public class PlayerMovement : MonoBehaviour
     /// Move o personagem baseado no input
     /// </summary>
     /// <param name="direcao">o parâmetro direcao irá definir se a direção estará invertida ou não</param>
-    private void Mover()
+    public void Mover(Vector2 direcao = new Vector2(), float? velocidade = null)
     {
-        Vector2 velocidade = new Vector2(input.x * speed, rig.velocity.y); //gera um vetor de velocidade mantendo a velocidade do Y do corpo rígido
-        rig.velocity = velocidade;
+        Vector2 final_direcao;
+        float final_speed = velocidade != null ? (float) velocidade : speed;
+
+        if (direcao != Vector2.zero)
+            final_direcao = new Vector2(direcao.x * final_speed, rig.velocity.y);
+        else
+            final_direcao = new Vector2(input.x * final_speed, rig.velocity.y); //gera um vetor de velocidade mantendo a velocidade do Y do corpo rígido
+
+        rig.velocity = final_direcao;
     }
 
     #endregion

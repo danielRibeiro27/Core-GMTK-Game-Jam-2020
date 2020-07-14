@@ -1,0 +1,69 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &2821406123645640945
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2821406123645640959}
+  - component: {fileID: 2821406123645640958}
+  m_Layer: 0
+  m_Name: ThirdConversation
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2821406123645640959
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2821406123645640945}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 613.91156, y: 160.98204, z: -54.375}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2821406123645640958
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2821406123645640945}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a86ce3e487076e84b8fd9825fd8e2cce, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dialogue:
+  - sentences:
+    - A-2, I need to talk to you.
+    name: Blue V
+  - sentences:
+    - What is it, Blue?
+    name: A.T.L.A.S 02
+  - sentences:
+    - "Well...it\u2019s about the monitoring system. Something really bad happened
+      in the floors above. I think we should find another exit."
+    name: Blue V
+  - sentences:
+    - What happened?
+    name: A.T.L.A.S 02
+  - sentences:
+    - "An accident A-2, an accident. Nothing you should think about right now. Let\u2019s
+      get out of here already. I just tracked an exit on the other side of this room
+      that we can use. A passageway to sector D, what do you think?"
+    name: Blue V
+  - sentences:
+    - .. --. -. --- .-. .
+    name: 
+  dialogueName: Terceira conversa
+  conversationEnded: 0

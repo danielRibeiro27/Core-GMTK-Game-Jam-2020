@@ -11,6 +11,7 @@ public class DialogueManager : MonoBehaviour
     private Animator anim;
     public static DialogueManager instance;
     public bool currentDialogueFinished = false;
+    public string currentDialogueName = "";
     private void Awake()
     {
         if (instance == null)
