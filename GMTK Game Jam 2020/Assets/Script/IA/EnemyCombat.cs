@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class EnemyCombat : MonoBehaviour
 {
+    private EnemyGFX gfx;
+    private EnemyIA IA;
+
     [SerializeField] public float knockbackForce;
     [SerializeField] public float knockbackForceUp;
     [SerializeField] public float knockbackDuration;
@@ -38,6 +41,8 @@ public class EnemyCombat : MonoBehaviour
     private void Start()
     {
         vidaInicial = Vida;
+        gfx = GetComponent<EnemyGFX>();
+        IA = GetComponent<EnemyIA>();
     }
 
     private void Update()
@@ -47,6 +52,9 @@ public class EnemyCombat : MonoBehaviour
 
     private void Morrer()
     {
+        AudioManager.instance.PlayByName("InimigoMorte");
+        AudioManager.instance.StopByName("EnemyWalk");
+
         if (GameObject.Find("Level01Manager"))
         {
             Level01Manager lv = GameObject.Find("Level01Manager").GetComponent<Level01Manager>();
@@ -58,6 +66,20 @@ public class EnemyCombat : MonoBehaviour
     public void TakeDamage(int damage)
     {
         Vida -= damage;
+        AudioManager.instance.PlayByName("AtaqueAcertouInimigo");
+        AudioManager.instance.PlayByName("InimigoAcertado");
+        StartCoroutine(EfeitosTakeDamage(.5f));
+    }
+
+    IEnumerator EfeitosTakeDamage(float duration)
+    {
+        gfx.Blink(true);
+        IA.velocity = 0f;
+
+        yield return new WaitForSeconds(duration);
+
+        IA.velocity = IA.startVelocity;
+        gfx.Blink(false);
     }
 
     public void Attack()

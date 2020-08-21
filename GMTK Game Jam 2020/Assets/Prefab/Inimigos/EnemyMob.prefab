@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 3026308316913478776}
   - component: {fileID: 3026308316913478779}
   - component: {fileID: 3026308316913478778}
+  - component: {fileID: -6922388420943436202}
   m_Layer: 9
   m_Name: EnemyMob
   m_TagString: Enemys
@@ -95,6 +96,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   velocity: 3
+  startVelocity: 0
+  playerDetectionRadius: 0
+  attackRadius: 0
+  oqEPlayer:
+    serializedVersion: 2
+    m_Bits: 2048
+  currentState: 1
 --- !u!114 &3026308316913478778
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -107,8 +115,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 76f264e57b1ba9f4c911a5e01be8e02e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  knockbackForce: 100
+  knockbackForceUp: 5
+  knockbackDuration: 0.5
   dano: 1
   _vida: 5
+--- !u!114 &-6922388420943436202
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3026308316913478773}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b030d591415276e4db0539d149d10211, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &3026308317149940524
 GameObject:
   m_ObjectHideFlags: 0

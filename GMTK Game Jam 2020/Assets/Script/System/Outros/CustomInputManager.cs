@@ -18,9 +18,9 @@ public class CustomInputManager : MonoBehaviour
     /// Esse é um vetor contendo todas as ações do player
     /// </summary>
     public CustomInput[] inputs = { 
-        new CustomInput("Horizontal", 0, "Horizontal", "movimento do player na horizontal", "Movimentar", "AxisRaw"),
-        new CustomInput("Acao", 0, "Fire", "botao de ação", "Ação", "ButtonDown"),
-        new CustomInput("Pulo", 0, "Jump", "botao de pular", "Pular", "ButtonDown")
+        new CustomInput("Horizontal", 0, "Horizontal", "movimento do player na horizontal", "Movement", "AxisRaw"),
+        new CustomInput("Acao", 0, "Fire", "botao de ação", "Action", "ButtonDown"),
+        new CustomInput("Pulo", 0, "Jump", "botao de pular", "Jump", "ButtonDown")
     };
 
     /// <summary>

@@ -17,6 +17,7 @@ public class BossIA : MonoBehaviour
     [SerializeField] private LayerMask oqEPlayer;
     [SerializeField] private State currentState = State.Null;
     [SerializeField] private Transform player;
+    public bool canMove = true;
 
     [Space]
     [Header("Animação")]
@@ -27,6 +28,7 @@ public class BossIA : MonoBehaviour
     private Vector3 lookin_left;
     private float cooldownAttack = 0f;
     private bool isAttacking = false;
+    private bool som_passos_tocando = false;
 
     private void Start()
     {
@@ -39,9 +41,12 @@ public class BossIA : MonoBehaviour
     }
     private void Update()
     {
-        cooldownAttack -= Time.deltaTime;
-
         SetAnimations();
+
+        if (!canMove)
+            return;
+
+        cooldownAttack -= Time.deltaTime;
 
         if (currentState == State.Chase && !isAttacking)
         {
@@ -56,6 +61,20 @@ public class BossIA : MonoBehaviour
                     Chase();
                 }
             }
+        }
+
+        if (rig.velocity.x > .1f || rig.velocity.x < -.1f)
+        {
+            if (!som_passos_tocando)
+            {
+                AudioManager.instance.PlayByName("BossWalk");
+                som_passos_tocando = true;
+            }
+        }
+        else
+        {
+            AudioManager.instance.StopByName("BossWalk");
+            som_passos_tocando = false;
         }
     }
 
@@ -93,7 +112,10 @@ public class BossIA : MonoBehaviour
 
     private void SetAnimations()
     {
-        transform.localScale = player.position.x > transform.position.x ? lookin_right : lookin_left;
+        if(player != null)
+        {
+            transform.localScale = player.position.x > transform.position.x ? lookin_right : lookin_left;
+        }
 
         bool isMoving = rig.velocity.x != 0;
         anim.SetBool("IsMoving", isMoving);

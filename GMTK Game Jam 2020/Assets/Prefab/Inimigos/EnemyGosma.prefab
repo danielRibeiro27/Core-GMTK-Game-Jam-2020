@@ -68,8 +68,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: -1316837565
+  m_SortingLayer: 4
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 6bc072deda6b868448a462a519164457, type: 3}
   m_Color: {r: 1, g: 0.9386792, b: 0.9386792, a: 1}
@@ -114,6 +114,7 @@ GameObject:
   - component: {fileID: 9079130677847064416}
   - component: {fileID: 9079130677847064417}
   - component: {fileID: 9079130677847064418}
+  - component: {fileID: -6443119024452461278}
   m_Layer: 9
   m_Name: EnemyGosma
   m_TagString: Enemys
@@ -196,6 +197,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   velocity: 3
+  startVelocity: 0
+  playerDetectionRadius: 0
+  attackRadius: 0
+  oqEPlayer:
+    serializedVersion: 2
+    m_Bits: 2048
+  currentState: 1
 --- !u!114 &9079130677847064418
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -208,5 +216,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 76f264e57b1ba9f4c911a5e01be8e02e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  knockbackForce: 100
+  knockbackForceUp: 5
+  knockbackDuration: 0.5
   dano: 1
   _vida: 5
+--- !u!114 &-6443119024452461278
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9079130677847064419}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b030d591415276e4db0539d149d10211, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

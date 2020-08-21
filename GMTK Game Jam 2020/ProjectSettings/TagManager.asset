@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Enemys
   - BlocoMudarDirecao
+  - Boss
   layers:
   - Default
   - TransparentFX
@@ -43,6 +44,18 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
+  - name: Background
+    uniqueID: 3681499545
+    locked: 0
+  - name: Plataformas
+    uniqueID: 3664566687
+    locked: 0
   - name: Player
     uniqueID: 2636493899
+    locked: 0
+  - name: Inimigos
+    uniqueID: 2978129731
+    locked: 0
+  - name: Above
+    uniqueID: 933358605
     locked: 0

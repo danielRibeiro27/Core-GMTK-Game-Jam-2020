@@ -5,8 +5,9 @@ using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
-    private Rigidbody2D player;
+    public static GameManager instance;
 
+    private Rigidbody2D player;
     private static bool canInput = false;
     public static bool CanInput
     {
@@ -22,7 +23,11 @@ public class GameManager : MonoBehaviour
             //se ir para falso resetar as velocidades por 1 frame
             if (!CanInput)
             {
-                GameObject.Find("Player").GetComponent<Rigidbody2D>().velocity = Vector2.zero;
+                GameObject player = GameObject.Find("Player");
+                if(player != null)
+                {
+                    player.GetComponent<Rigidbody2D>().velocity = Vector2.zero;
+                }
             }
         }
     }
@@ -42,17 +47,28 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    private void Awake()
+    {
+        if(instance == null)
+        {
+            instance = this;
+            DontDestroyOnLoad(this.gameObject);
+        }
+        else
+        {
+            Destroy(this.gameObject);
+        }
+    }
+
     private void Start()
     {
-        player = GameObject.Find("Player").GetComponent<Rigidbody2D>();
+        //player = GameObject.Find("Player").GetComponent<Rigidbody2D>();
     }
-    private void Update()
-    {
-    }
+
+
     private void FixedUpdate()
     {
-        if (!CanMove)
-            player.velocity = Vector2.zero;
+
     }
     public void TrocarCena(int index)
     {

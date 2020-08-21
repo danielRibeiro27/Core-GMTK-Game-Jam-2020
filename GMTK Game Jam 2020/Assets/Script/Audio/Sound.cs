@@ -1,20 +1,21 @@
-using UnityEngine.Audio;
+﻿using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
 [System.Serializable]
-public class Sound {
-    public AudioClip clip;
-
-    public string name;
-
+public class Sound
+{
     [Range(0f, 1f)]
     public float volume;
 
-    [Range(.1f, 3f)]
+    [Range(1f, 3f)]
     public float pitch;
 
-    public bool loop;
-
-    [HideInInspector]
+    [HideInInspector] 
     public AudioSource source;
+
+    public string name;
+    public bool loop;
+    public AudioClip clip;
+
 }

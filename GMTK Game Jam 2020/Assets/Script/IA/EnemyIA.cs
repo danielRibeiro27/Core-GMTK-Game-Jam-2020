@@ -6,6 +6,7 @@ using UnityEngine;
 public class EnemyIA : MonoBehaviour
 {
     public float velocity = 10;
+    public float startVelocity;
     private Vector2 direction = new Vector2(1, 0);
     private Rigidbody2D rig;
     private EnemyCombat enemyCombat;
@@ -20,6 +21,7 @@ public class EnemyIA : MonoBehaviour
     private enum State { Null, Patrol, Chase };
     private Vector3 lookin_right;
     private Vector3 lookin_left;
+    private bool som_passos_tocando = false;
 
     private void Start()
     {
@@ -29,8 +31,10 @@ public class EnemyIA : MonoBehaviour
         rig = GetComponent<Rigidbody2D>();
         enemyCombat = GetComponent<EnemyCombat>();
 
+
         lookin_right = new Vector3(transform.localScale.x, transform.localScale.y, transform.localScale.z);
         lookin_left = new Vector3(-transform.localScale.x, transform.localScale.y, transform.localScale.z);
+        startVelocity = velocity;
     }
     private void Update()
     {
@@ -51,6 +55,20 @@ public class EnemyIA : MonoBehaviour
         }
 
         transform.localScale = direction.x > 0 ? lookin_right : lookin_left;
+
+        if(rig.velocity.x > .1f || rig.velocity.x < -.1f)
+        {
+            if (!som_passos_tocando)
+            {
+                AudioManager.instance.PlayByName("EnemyWalk");
+                som_passos_tocando = true;
+            }
+        }
+        else
+        {
+            AudioManager.instance.StopByName("EnemyWalk");
+            som_passos_tocando = false;
+        }
     }
 
     private void WalkForward()

@@ -43,6 +43,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a86ce3e487076e84b8fd9825fd8e2cce, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dialogue: []
+  dialogue:
+  - sentences:
+    - "These exoskeletons shouldn\u2019t be acting this way, A-2. They are merely
+      the structural basis for the GENERATION B prototypes that have been deactivated
+      for a long while now. They don\u2019t even have a CORE INFINITUM."
+    name: Blue V
+  - sentences:
+    - Is that possible? None of us should be able to even move without a CORE. We
+      are machines without free will, having only pre-programmed actions.
+    name: A.T.L.A.S 02
+  - sentences:
+    - If you think so...
+    - "Well, dear, I\u2019ll try and track these prototypes\u2019 energy frequency
+      to see what I can find. "
+    name: Blue V
   dialogueName: Segunda conversa
   conversationEnded: 0

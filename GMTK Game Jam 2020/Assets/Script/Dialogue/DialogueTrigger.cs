@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class DialogueTrigger : MonoBehaviour
 {
@@ -9,31 +10,17 @@ public class DialogueTrigger : MonoBehaviour
     private int currentIndex = 0;
     public bool conversationEnded = false;
     private bool foi_utilizado = false;
+    private bool control = false;
+
     private void Update()
     {
         AguardarFinish();
 
         if(currentIndex >= dialogue.Length)
         {
-            if (foi_utilizado)
+            if (foi_utilizado && !control)
             {
-                conversationEnded = true;
-                GameManager.CanInput = true;
-                GameManager.CanMove = true;
-
-                if (dialogueName == "Terceira conversa")
-                {
-                    GameManager.CanInput = false;
-                    GameManager.CanMove = true;
-
-                    Level01Manager lvl = FindObjectOfType<Level01Manager>();
-                    if (lvl.terceira_conversa_iniciada && !lvl.quarta_conversa_iniciada)
-                    {
-                        lvl.QuartaConversa();
-                    }
-                }
-
-                Destroy(gameObject);
+                OnConversationEnded();
             }
         }
     }
@@ -63,4 +50,76 @@ public class DialogueTrigger : MonoBehaviour
             }
         }
     }
+
+    private void OnConversationEnded()
+    {
+        conversationEnded = true;
+        control = true;
+        GameManager.CanInput = true;
+        GameManager.CanMove = true;
+
+        if (dialogueName == "Terceira conversa")
+        {
+            GameManager.CanInput = false;
+            GameManager.CanMove = true;
+
+            Level01Manager lvl = FindObjectOfType<Level01Manager>();
+            if (lvl.terceira_conversa_iniciada && !lvl.quarta_conversa_iniciada)
+            {
+                lvl.QuartaConversa();
+            }
+        }
+
+        if (dialogueName == "Segunda conversa Lv2")
+        {
+            Level02Manager lvl2 = FindObjectOfType<Level02Manager>();
+            lvl2.MoverPlayerAuto();
+        }
+
+        if(dialogueName == "Intro conversation")
+        {
+            StartCoroutine(TrocarCena());
+        }
+
+        if (dialogueName == "Terceira conversa Lv3")
+        {
+            LevelManager lv = FindObjectOfType<LevelManager>();
+            if(lv != null)
+            {
+                lv.GoToLevel(5);
+            }
+        }
+
+        if(dialogueName == "Primeira conversa LvBOSS")
+        {
+            FindObjectOfType<BossIA>().canMove = true;
+        }
+
+        if (dialogueName == "Segunda conversa LvBOSS")
+        {
+            FindObjectOfType<BossIA>().canMove = true;
+        }
+
+        if(dialogueName == "Terceira conversa LvBOSS")
+        {
+            LevelBOSSManager lvBoss = FindObjectOfType<LevelBOSSManager>();
+            StartCoroutine(lvBoss.SpriteFade(1, 5f));
+        }
+
+        if (dialogueName == "Primeira conversa LvCREDITOS")
+        {
+            AudioManager.instance.PlayByName("ExplosaoLevelBOSS");
+            LevelCREDITOSManager lvCredito = FindObjectOfType<LevelCREDITOSManager>();
+            StartCoroutine(lvCredito.TrocarMascara());
+        }
+    }
+
+    IEnumerator TrocarCena()
+    {
+        yield return new WaitForSeconds(3f);
+
+        LevelManager lvl = FindObjectOfType<LevelManager>();
+        lvl.GoToLevel(2);
+    }
+
 }

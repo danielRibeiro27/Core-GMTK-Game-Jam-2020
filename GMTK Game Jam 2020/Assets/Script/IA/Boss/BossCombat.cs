@@ -49,7 +49,7 @@ public class BossCombat : MonoBehaviour
 
     private void Update()
     {
-
+        
     }
 
     private void Morrer()
@@ -60,6 +60,8 @@ public class BossCombat : MonoBehaviour
     public void TakeDamage(int damage)
     {
         Vida -= damage;
+        anim.SetTrigger("TakeDamage");
+        AudioManager.instance.PlayByName("BossTakeDamage");
     }
 
     public float Attack()
@@ -69,6 +71,8 @@ public class BossCombat : MonoBehaviour
 
         //seta a animacao de ataque
         anim.SetTrigger("Attack");
+
+        AudioManager.instance.PlayByName("BossAttack");
 
         return cooldownAtks;
     }

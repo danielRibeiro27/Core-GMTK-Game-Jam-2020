@@ -62,6 +62,9 @@ public class CurtoCircuito : MonoBehaviour
         playerMov.direcao = -1;
         CustomInputManager.instance.EmbaralharInput();
 
+        string[] audio_curto_circuito_names = new string[] {"CurtoCircuitoA", "CurtoCircuitoB", "CurtoCircuitoC"};
+        AudioManager.instance.PlayByName(audio_curto_circuito_names[Random.Range(0, audio_curto_circuito_names.Length)]);
+
         in_curto_circuito = true;
     }
 

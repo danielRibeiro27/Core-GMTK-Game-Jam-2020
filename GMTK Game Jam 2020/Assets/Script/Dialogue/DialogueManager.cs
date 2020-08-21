@@ -6,8 +6,8 @@ using TMPro;
 
 public class DialogueManager : MonoBehaviour
 {
-    public TextMeshProUGUI nameTxt;
-    public TextMeshProUGUI dialogueTxt;
+    [HideInInspector] public TextMeshProUGUI nameTxt;
+    [HideInInspector] public TextMeshProUGUI dialogueTxt;
     private Animator anim;
     public static DialogueManager instance;
     public bool currentDialogueFinished = false;
@@ -21,11 +21,13 @@ public class DialogueManager : MonoBehaviour
         anim = GameObject.Find("DialogueBox").GetComponent<Animator>();
     }
 
-    private Queue<string> sentences;
-
-    private void Start()
+    private void Update()
     {
+        if (currentDialogueFinished)
+            StopAllCoroutines();
     }
+
+    private Queue<string> sentences;
 
     public void StartDialogue(Dialogue dialogue)
     {
@@ -53,16 +55,24 @@ public class DialogueManager : MonoBehaviour
         string sentence = sentences.Dequeue();
         StopAllCoroutines();
         StartCoroutine(TypeSentence(sentence));
+
+        //gambiarra perddoa deus mas preciso terminar logo
+        if (sentence == "Don’t deny that you noticed the A.I. inside you attempting to mold you a personality. Don’t deny that you felt someone controlling your movements, hurting you to the point of losing control over your own body.")
+        {
+            LevelBOSSManager lvBoss = FindObjectOfType<LevelBOSSManager>();
+            lvBoss.EventoOlharParaTela();
+        }
     }
 
     IEnumerator TypeSentence(string sentence)
     {
         dialogueTxt.text = "";
 
-        foreach(char letter in sentence.ToCharArray())
+        foreach (char letter in sentence.ToCharArray())
         {
+            AudioManager.instance.PlayByName("TypeText");
             dialogueTxt.text += letter;
-            yield return null;
+            yield return new WaitForSeconds(.05f);
         }
     }
 

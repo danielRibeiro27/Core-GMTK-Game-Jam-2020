@@ -26,8 +26,12 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private Vector2 overlapSize;
     [SerializeField] private Transform overlapPivot;
     private bool pulou;
+    private bool pulouEvent = false;
     private bool estaNoChao = true;
-    private Vector2 tamanhoPlayer;
+    private bool estaNoAr = false;
+    private bool estaCaindo = false;
+    private bool playing_steps_audio = false;
+    private int moving;
 
     [Space]
     [Header("Animacao")]
@@ -39,14 +43,10 @@ public class PlayerMovement : MonoBehaviour
     private Vector3 lookin_right;
     private Vector3 lookin_left;
 
-    public bool moverAuto = false;
-    public Vector2 direcaoMoverAuto = new Vector2(1, 0);
-    public float velocidadeMoverAuto;
+    [HideInInspector] public bool moverAuto = false;
+    [HideInInspector] public Vector2 direcaoMoverAuto = new Vector2(1, 0);
+    [HideInInspector] public float velocidadeMoverAuto;
 
-    private void Awake()
-    {
-        tamanhoPlayer = GetComponent<BoxCollider2D>().size;
-    }
     void Start()
     {
         rig = GetComponent<Rigidbody2D>();
@@ -61,6 +61,27 @@ public class PlayerMovement : MonoBehaviour
         SetAnimations();
         input = GetInput();
         GetJumpInput();
+
+        //se estive rno chao, entao nao esta no ar
+        estaNoAr = !estaNoChao;
+
+        if(estaCaindo && estaNoChao)
+        {
+            AudioManager.instance.PlayByName("PlayerLand");
+            pulouEvent = false;
+        }
+
+        if (moving > 0 && !playing_steps_audio && !estaNoAr)
+        {
+            AudioManager.instance.PlayByName("PlayerSteps");
+            playing_steps_audio = true;
+        }
+
+        if(moving == 0 || estaNoAr)
+        {
+            AudioManager.instance.StopByName("PlayerSteps");
+            playing_steps_audio = false;
+        }
     }
 
     void FixedUpdate()
@@ -93,24 +114,18 @@ public class PlayerMovement : MonoBehaviour
     /// Move o personagem baseado no input
     /// </summary>
     /// <param name="direcao">o parâmetro direcao irá definir se a direção estará invertida ou não</param>
-    public void Mover(Vector2 direcao = new Vector2(), float? velocidade = null)
+    public void Mover()
     {
         if (!GameManager.CanMove)
             return;
+
+        Vector2 final_direcao = new Vector2(input.x * speed, rig.velocity.y); //gera um vetor de velocidade mantendo a velocidade do Y do corpo rígido
 
         if (moverAuto)
         {
             rig.velocity = new Vector2(direcaoMoverAuto.x * velocidadeMoverAuto, rig.velocity.y);
             return;
         }
-
-        Vector2 final_direcao;
-        float final_speed = velocidade != null ? (float) velocidade : speed;
-
-        if (direcao != Vector2.zero)
-            final_direcao = new Vector2(direcao.x * final_speed, rig.velocity.y);
-        else
-            final_direcao = new Vector2(input.x * final_speed, rig.velocity.y); //gera um vetor de velocidade mantendo a velocidade do Y do corpo rígido
 
         rig.velocity = final_direcao;
     }
@@ -122,7 +137,7 @@ public class PlayerMovement : MonoBehaviour
     private void SetAnimations()
     {
         //recebe 1 se estiver se movendo para a direita ou para a esquerda
-        float moving = rig.velocity.x > 0.1 || rig.velocity.x < -0.1 ? 1 : 0;
+        moving = rig.velocity.x > 0.1 || rig.velocity.x < -0.1 ? 1 : 0;
 
         anim.SetFloat("VelocityY", rig.velocity.y);
         anim.SetFloat("VelocityX", moving);
@@ -154,6 +169,9 @@ public class PlayerMovement : MonoBehaviour
         if (CustomInputManager.instance.GetInputDown("Pulo") && estaNoChao == true)
         {
             pulou = true;
+            estaNoAr = true;
+
+            AudioManager.instance.PlayByName("PlayerJump");
         }
     }
 
@@ -166,12 +184,17 @@ public class PlayerMovement : MonoBehaviour
         {
             rig.AddForce(Vector2.up * velocidadeDoPulo, ForceMode2D.Impulse);
             pulou = false;
+            pulouEvent = true;
             estaNoChao = false;
         }
         else
         {
             estaNoChao = Physics2D.OverlapBox(overlapPivot.position, overlapSize, 0, chao);
         }
+
+        //se estiver caindo, recebe true
+        //o trecho precisa estar após capturar se esta no chao
+        estaCaindo = rig.velocity.y < 0f;
     }
 
     #endregion

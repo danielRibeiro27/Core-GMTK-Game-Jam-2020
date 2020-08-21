@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 /// <summary>
 /// Controla o roteiro do level.
@@ -12,6 +13,7 @@ public class Level01Manager : MonoBehaviour
     [SerializeField] private GameObject blackPanel;
     private DialogueTrigger currentTrigger = null;
 
+    [Space]
     [Header("Primeira conversa")]
     private bool primeira_conversa_iniciada = false;
 
@@ -45,6 +47,8 @@ public class Level01Manager : MonoBehaviour
         //ao começar o jogo, abrir um painel preto com a caixa de dialogo inicial
         PrimeiraConversa();
         player = GameObject.Find("Player").GetComponent<PlayerMovement>();
+
+        AudioManager.instance.FadeOutAudio("MenuMusic", 1f, this);
     }
 
     private void Update()
@@ -73,6 +77,11 @@ public class Level01Manager : MonoBehaviour
         }
     }
 
+    public void OnMusicFinished()
+    {
+        AudioManager.instance.FadeInAudio("MainMusic", 15f);
+    }
+
     private void StartConversation(string triggerName, bool? canMove = null, bool? canInput = null)
     {
         //busca o trigger corespondente
@@ -99,12 +108,12 @@ public class Level01Manager : MonoBehaviour
     private void PrimeiraConversa()
     {
         blackPanel.SetActive(true);
-        StartConversation("Primeira conversa");
+        StartConversation("Primeira conversa", false, false);
     }
 
     private void SegundaConversa()
     {
-        StartConversation("Segunda conversa");
+        StartConversation("Segunda conversa", false, false);
         segunda_conversa_iniciada = true;
     }
 
@@ -130,6 +139,10 @@ public class Level01Manager : MonoBehaviour
         StartConversation("Quarta conversa");
     }
 
+    public void NextLevelCol(int sceneIndex, Collider2D col, string colName)
+    {
+        SceneManager.LoadScene(sceneIndex);
+    }
 
     private void OnDrawGizmosSelected()
     {

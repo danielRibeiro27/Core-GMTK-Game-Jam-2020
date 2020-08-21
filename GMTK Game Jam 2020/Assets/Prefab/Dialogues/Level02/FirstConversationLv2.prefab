@@ -1,0 +1,102 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &811692075849874940
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 811692075849874942}
+  - component: {fileID: 811692075849874941}
+  m_Layer: 0
+  m_Name: FirstConversationLv2
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &811692075849874942
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 811692075849874940}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -34.82596, y: -3.7419195, z: -54.660156}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &811692075849874941
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 811692075849874940}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a86ce3e487076e84b8fd9825fd8e2cce, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dialogue:
+  - sentences:
+    - Dear?
+    name: Blue V
+  - sentences:
+    - Do talk, Blue.
+    name: A.T.L.A.S 02
+  - sentences:
+    - "Why didn\u2019t you listen to me when I told you about the possible exit?"
+    name: Blue V
+  - sentences:
+    - "What do you mean? Shouldn\u2019t we come through here? These are the pre-programmed
+      coor-"
+    name: A.T.L.A.S 02
+  - sentences:
+    - "I don\u2019t understand where you\u2019re getting at, I am just the A.T.L.A.S
+      CL 9836328321 AHUO2JHS COD23239 GEN.A. Model."
+    name: A.T.L.A.S 02
+  - sentences:
+    - We all are much more than lines of code, dear.
+    name: Blue V
+  - sentences:
+    - --
+    name: 
+  - sentences:
+    - Why are so many COREless prototypes attacking us, Blue? Did you manage to see
+      anything?
+    name: A.T.L.A.S 02
+  - sentences:
+    - "No, dear. Unfortunately I couldn\u2019t decipher the codes enough. All I can
+      understand is that a v\xEDrus activated these units\u2019 energy matrices."
+    name: Blue V
+  - sentences:
+    - "It even looks like they\u2019re asking for help. I just want to get out of
+      this place and look for Mister Mirsh, Blue."
+    name: A.T.L.A.S 02
+  - sentences:
+    - "Don\u2019t worry, dear, we\u2019ll get out of here soon, I\u2019m sure of
+      it."
+    name: Blue V
+  - sentences:
+    - How can you be so sure? My graphs say that the probability is low.
+    name: A.T.L.A.S 02
+  - sentences:
+    - 'Register this in your database, A-2: Hope dies last.'
+    name: Blue V
+  - sentences:
+    - Hope...
+    name: A.T.L.A.S 02
+  - sentences:
+    - A-2?
+    name: Blue V
+  - sentences:
+    - "--\t"
+    name: 
+  dialogueName: Primeira conversa Lv2
+  conversationEnded: 0

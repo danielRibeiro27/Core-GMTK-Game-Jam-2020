@@ -13,7 +13,6 @@ public class PlayerCombat : MonoBehaviour
     [SerializeField] private float tempoInvencivel = 1f;
     [SerializeField] private float tempo_atordoado = 0.2f;
 
-
     [Space]
     [Header("Atributos")]
 
@@ -29,20 +28,18 @@ public class PlayerCombat : MonoBehaviour
         set
         {
             _vida = value;
-
-            if(_vida <= 0)
-            {
-                Morrer();
-            }
         }
     }
 
     [Space]
-    [Header("Others")]
+    [Header("Others")] 
+    [SerializeField] private GameObject atlas_pela_metade;
     private PlayerMovement playerMov;
     private Rigidbody2D rig;
     private Animator anim;
     private bool invencivel = false;
+
+    private bool control = false;
 
     private void Start()
     {
@@ -58,6 +55,23 @@ public class PlayerCombat : MonoBehaviour
         if (CustomInputManager.instance.GetInputDown("Acao"))
         {
             anim.SetTrigger("Attack");
+            AudioManager.instance.PlayByName("PlayerAttack");
+        }
+
+        if (_vida <= 0)
+        {
+            Morrer();
+        }
+
+        if(Vida <= (vidaInicial / 2) && !control)
+        {
+            control = true;
+
+            LevelBOSSManager lvBoss = FindObjectOfType<LevelBOSSManager>();
+            if(lvBoss != null)
+            {
+                lvBoss.SegundaConversaLvBOSS();
+            }
         }
     }
 
@@ -68,6 +82,9 @@ public class PlayerCombat : MonoBehaviour
         StartCoroutine(Knockback(dir_to_enemy.normalized, knockbackForce, knockbackForceUp, knockbackDuration));
         StartCoroutine(Invencivel());
         StartCoroutine(Atordoado());
+
+        string[] audio_curto_circuito_names = new string[] { "Atlas02DanoA", "Atlas02DanoB", "Atlas02DanoC" };
+        AudioManager.instance.PlayByName(audio_curto_circuito_names[Random.Range(0, audio_curto_circuito_names.Length)]);
     }
 
     IEnumerator Atordoado()
@@ -101,6 +118,17 @@ public class PlayerCombat : MonoBehaviour
 
     private void Morrer()
     {
+        GameManager.CanInput = false;
+        GameManager.CanMove = false;
+
+        string[] audio_curto_circuito_names = new string[] { "PlayerMorteA", "PlayerMorteB", "PlayerMorteC" };
+        AudioManager.instance.PlayByName(audio_curto_circuito_names[Random.Range(0, audio_curto_circuito_names.Length)]);
+
+        LevelManager lv = FindObjectOfType<LevelManager>();
+        if (lv != null)
+            lv.PlayerDied();
+
+        Instantiate(atlas_pela_metade, transform.position, Quaternion.identity);
         Destroy(gameObject);
     }
 

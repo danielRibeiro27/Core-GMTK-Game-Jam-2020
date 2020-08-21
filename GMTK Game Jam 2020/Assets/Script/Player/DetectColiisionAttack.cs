@@ -16,5 +16,14 @@ public class DetectColiisionAttack : MonoBehaviour
                 ec.TakeDamage(damage);
             }
         }
+
+        if (collision.gameObject.tag == "Boss")
+        {
+            BossCombat ec = collision.gameObject.GetComponent<BossCombat>();
+            if (ec != null)
+            {
+                ec.TakeDamage(damage);
+            }
+        }
     }
 }
