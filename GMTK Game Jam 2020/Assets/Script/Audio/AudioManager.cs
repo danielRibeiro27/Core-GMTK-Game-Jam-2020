@@ -64,15 +64,10 @@ public class AudioManager : MonoBehaviour
         if (p != null)
         {
             player = p.transform;
-            Debug.Log("HERE");
-        }
-        else
-        {
-            Debug.Log("NOT HERE");
         }
     }
 
-    private void Update()
+    private void FixedUpdate()
     {
         if(player != null)
         {

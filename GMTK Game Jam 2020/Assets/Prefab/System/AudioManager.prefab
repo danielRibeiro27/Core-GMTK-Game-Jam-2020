@@ -46,25 +46,25 @@ MonoBehaviour:
   PlayOnAwake: []
   mainMixer: {fileID: 24300002, guid: 9f00989624d14cd4eb83b8ae0d5ba8bb, type: 2}
   sounds:
-  - volume: 1
+  - volume: 0.55
     pitch: 1
     source: {fileID: 0}
     name: PlayerJump
     loop: 0
     clip: {fileID: 8300000, guid: c30e790185605c247b66b1bde51582f1, type: 3}
-  - volume: 1
+  - volume: 0.05
     pitch: 1
     source: {fileID: 0}
     name: PlayerLand
     loop: 0
     clip: {fileID: 8300000, guid: 217641ddea4f0984a945ffdf2f570d39, type: 3}
-  - volume: 1
+  - volume: 0.56
     pitch: 1
     source: {fileID: 0}
     name: PlayerSteps
     loop: 1
     clip: {fileID: 8300000, guid: d345c5a24a820704e9332933672f0b36, type: 3}
-  - volume: 1
+  - volume: 0.67
     pitch: 1
     source: {fileID: 0}
     name: PlayerAttack
@@ -142,7 +142,7 @@ MonoBehaviour:
     name: BossWalk
     loop: 1
     clip: {fileID: 8300000, guid: d345c5a24a820704e9332933672f0b36, type: 3}
-  - volume: 0.11
+  - volume: 0
     pitch: 1
     source: {fileID: 0}
     name: EnemyWalk

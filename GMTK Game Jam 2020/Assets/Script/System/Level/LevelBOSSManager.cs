@@ -36,6 +36,8 @@ public class LevelBOSSManager : MonoBehaviour
             PrimeiraConversaLvBOSS();
 
         player = GameObject.Find("Player");
+
+        AudioManager.instance.StopAllAudios();
     }
 
     void Update()

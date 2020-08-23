@@ -210,6 +210,75 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1001 &836223177
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 3864865129964907476, guid: e40a455fe95d68f4aac02d08828e9abd,
+        type: 3}
+      propertyPath: m_Name
+      value: AudioManager
+      objectReference: {fileID: 0}
+    - target: {fileID: 3864865129964907498, guid: e40a455fe95d68f4aac02d08828e9abd,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -0.6923349
+      objectReference: {fileID: 0}
+    - target: {fileID: 3864865129964907498, guid: e40a455fe95d68f4aac02d08828e9abd,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -0.09040043
+      objectReference: {fileID: 0}
+    - target: {fileID: 3864865129964907498, guid: e40a455fe95d68f4aac02d08828e9abd,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -0.07042001
+      objectReference: {fileID: 0}
+    - target: {fileID: 3864865129964907498, guid: e40a455fe95d68f4aac02d08828e9abd,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3864865129964907498, guid: e40a455fe95d68f4aac02d08828e9abd,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3864865129964907498, guid: e40a455fe95d68f4aac02d08828e9abd,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3864865129964907498, guid: e40a455fe95d68f4aac02d08828e9abd,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3864865129964907498, guid: e40a455fe95d68f4aac02d08828e9abd,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 3864865129964907498, guid: e40a455fe95d68f4aac02d08828e9abd,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3864865129964907498, guid: e40a455fe95d68f4aac02d08828e9abd,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3864865129964907498, guid: e40a455fe95d68f4aac02d08828e9abd,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: e40a455fe95d68f4aac02d08828e9abd, type: 3}
 --- !u!1 &1125065957
 GameObject:
   m_ObjectHideFlags: 0
@@ -570,22 +639,36 @@ MonoBehaviour:
   dialogue:
   - sentences:
     - OLYMPUS TEC
-    - "\r\"Um novo mundo, para todos.\""
-    - "Sempre foi o que sonhamos, n\xE3o? A ideia de ajudar a humanidade a seguir
-      em frente sem falhas, sem degenera\xE7\xE3o, apenas evoluir para chegar em
-      um estado evolutivo correto. Sempre sonhamos com isso, n\xE3o \xE9 Nikolai? "
-    - "Morgana sempre foi a nossa base e \xE9 gra\xE7as a ela que chegamos onde chegamos,
-      era o seu sonho, nosso sonho. O que aconteceu s\xF3 nos impulsionou a seguir
-      em frente.\r\n"
-    - "O que \xE9 um humano?"
+    - '"A new world, for everyone."
+
+'
+    - "It's always been what we dreamed of, hasn't it? The idea of \u200B\u200Bhelping
+      humanity to move forward without fail, without degeneration, just evolve to
+      reach a correct evolutionary state. We always dream about it, don't we, Nikolai?\r\n"
+    - 'Morgana has always been our base and it is thanks to her that we arrived where
+      we arrived, it was her dream, our dream. What happened only impelled us to
+      move on.
+
+'
+    - 'What is a human?
+
+'
     - ...
-    - "Eu ainda n\xE3o compreendo o motivo de seguir por esse caminho, onde eu errei?
-      Onde N\xD3S erramos? \xC9 tudo culpa minha."
-    - "Me diga, mesmo neste momento final, foi voc\xEA que a levou de n\xF3s, n\xE3o?"
+    - 'I still don''t understand the reason for going this way, where did I go wrong?
+      Where do WE go wrong? It''s all my fault.
+
+'
+    - 'Tell me, even in this final moment, you took it from us, didn''t you?
+
+'
     - ...
-    - "A esperan\xE7a est\xE1 naqueles que buscam um mundo melhor, at\xE9 onde h\xE1
-      a maior escurid\xE3o iremos levar a luz, para um novo mundo, para todos."
-    - "Era isso que ela sempre acreditou, tudo isso \xE9 por ela.\r"
+    - 'Hope is in those who seek a better world, as far as there is the greatest
+      darkness we will take the light, to a new world, for everyone.
+
+'
+    - 'That is what she has always believed, all of this is for her.
+
+'
     name: 
   dialogueName: Intro conversation
   conversationEnded: 0

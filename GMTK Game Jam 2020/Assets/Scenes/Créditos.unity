@@ -393,6 +393,11 @@ MonoBehaviour:
 
     Sound: Davi
 
+
+    Who made the sound effects was Juhani Junkala. All
+    of these effects were obtained from a package called "The Essential Collection
+    of Retro Video Game Sound Effects", downloaded from OpenGameArt.org.
+
 '
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: ae5edf986c81c4141b6bb928e13c9d3b, type: 2}
@@ -439,7 +444,7 @@ MonoBehaviour:
   m_enableWordWrapping: 1
   m_wordWrappingRatios: 0.4
   m_overflowMode: 0
-  m_firstOverflowCharacterIndex: -1
+  m_firstOverflowCharacterIndex: 301
   m_linkedTextComponent: {fileID: 0}
   m_isLinkedTextComponent: 0
   m_isTextTruncated: 0
@@ -463,12 +468,12 @@ MonoBehaviour:
   m_margin: {x: 0, y: 0, z: 0, w: 0}
   m_textInfo:
     textComponent: {fileID: 897738499}
-    characterCount: 150
+    characterCount: 350
     spriteCount: 0
-    spaceCount: 22
-    wordCount: 22
+    spaceCount: 53
+    wordCount: 53
     linkCount: 0
-    lineCount: 6
+    lineCount: 10
     pageCount: 1
     materialCount: 2
   m_isUsingLegacyAnimationComponent: 0
