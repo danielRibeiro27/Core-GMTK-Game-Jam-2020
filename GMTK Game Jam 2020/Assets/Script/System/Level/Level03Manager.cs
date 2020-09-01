@@ -34,6 +34,9 @@ public class Level03Manager : MonoBehaviour
     {
         if(!primeira_conversa_iniciada)
             PrimeiraConversaLv3();
+
+        AudioManager.instance.StopByName("2FaseMusic");
+        AudioManager.instance.PlayByName("3FaseMusic");
     }
 
     void Update()

@@ -8,10 +8,10 @@ public class DialogueManager : MonoBehaviour
 {
     [HideInInspector] public TextMeshProUGUI nameTxt;
     [HideInInspector] public TextMeshProUGUI dialogueTxt;
-    private Animator anim;
+    [HideInInspector] public bool currentDialogueFinished = false;
+    [HideInInspector] public string currentDialogueName = "";
     public static DialogueManager instance;
-    public bool currentDialogueFinished = false;
-    public string currentDialogueName = "";
+    private Animator anim;
     private void Awake()
     {
         if (instance == null)
@@ -61,6 +61,11 @@ public class DialogueManager : MonoBehaviour
         {
             LevelBOSSManager lvBoss = FindObjectOfType<LevelBOSSManager>();
             lvBoss.EventoOlharParaTela();
+        }
+
+        if(sentence == "You are–")
+        {
+            AudioManager.instance.PlayByName("BlueVDesativando");
         }
     }
 

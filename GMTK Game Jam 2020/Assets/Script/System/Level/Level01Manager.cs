@@ -46,15 +46,17 @@ public class Level01Manager : MonoBehaviour
     {
         //ao começar o jogo, abrir um painel preto com a caixa de dialogo inicial
         PrimeiraConversa();
+
         player = GameObject.Find("Player").GetComponent<PlayerMovement>();
 
-        AudioManager.instance.FadeOutAudio("MenuMusic", 1f, this);
+        AudioManager.instance.StopByName("MenuMusic");
+        AudioManager.instance.PlayByName("1FaseMusic");
     }
 
     private void Update()
     {
         //fechar conversa
-        if (currentTrigger.conversationEnded)
+        if (currentTrigger != null && currentTrigger.conversationEnded)
         {
             blackPanel.SetActive(false);
             currentTrigger.conversationEnded = false;
@@ -64,6 +66,7 @@ public class Level01Manager : MonoBehaviour
         if(criaturas_derrotadas >= 2 && !segunda_conversa_iniciada)
         {
             SegundaConversa();
+
         }
 
         if (!terceira_conversa_iniciada)
@@ -72,14 +75,12 @@ public class Level01Manager : MonoBehaviour
             if(col != null)
             {
                 if (col.tag == "Player")
+                {
                     TerceiraConversa();
+
+                }
             }
         }
-    }
-
-    public void OnMusicFinished()
-    {
-        AudioManager.instance.FadeInAudio("MainMusic", 15f);
     }
 
     private void StartConversation(string triggerName, bool? canMove = null, bool? canInput = null)
@@ -125,6 +126,7 @@ public class Level01Manager : MonoBehaviour
 
     public void QuartaConversa()
     {
+
         quarta_conversa_iniciada = true;
 
         StartCoroutine(QuartaConversaEnumerator());

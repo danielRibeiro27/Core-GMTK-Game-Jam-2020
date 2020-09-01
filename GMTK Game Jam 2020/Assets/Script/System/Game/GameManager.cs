@@ -8,7 +8,7 @@ public class GameManager : MonoBehaviour
     public static GameManager instance;
 
     private Rigidbody2D player;
-    private static bool canInput = false;
+    private static bool canInput = true;
     public static bool CanInput
     {
         get
@@ -32,7 +32,7 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    private static bool canMove = false;
+    private static bool canMove = true;
     public static bool CanMove
     {
         get
@@ -63,6 +63,11 @@ public class GameManager : MonoBehaviour
     private void Start()
     {
         //player = GameObject.Find("Player").GetComponent<Rigidbody2D>();
+    }
+
+    private void Update()
+    {
+
     }
 
 

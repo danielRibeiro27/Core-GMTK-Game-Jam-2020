@@ -31,6 +31,9 @@ public class Level02Manager : MonoBehaviour
     void Start()
     {
         PrimeiraConversaLv2();
+
+        AudioManager.instance.StopByName("1FaseMusic");
+        AudioManager.instance.PlayByName("2FaseMusic");
     }
 
     void Update()

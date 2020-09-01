@@ -42,7 +42,7 @@ public class CustomInputManagerUI : MonoBehaviour
                 key = type == "AxisRaw" ? "A e D" : "A";
                 break;
             case "Fire":
-                key = "Left Shift";
+                key = "Left Ctrl";
                 break;
             case "Jump":
                 key = "Space";

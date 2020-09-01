@@ -87,7 +87,7 @@ MonoBehaviour:
     - Temporary database generated.
     name: Blue V
   - sentences:
-    - "\u201CVALKYRIE PROTOCOL\u201D ACTIVATED\r\nEVACUATION TIME: [DEFINIR] MINUTES\r"
+    - "\u201CVALKYRIE PROTOCOL\u201D ACTIVATED\r\nEVACUATION TIME: [DEFINE] MINUTES\r"
     name: 
   - sentences:
     - "I don\u2019t like this protocol, Blue."

@@ -184,15 +184,51 @@ MonoBehaviour:
     name: InimigoMorte
     loop: 0
     clip: {fileID: 8300000, guid: 1e0ce70cb7ec7ac4482058d238773e41, type: 3}
-  - volume: 0.05
+  - volume: 1
     pitch: 1
     source: {fileID: 0}
     name: MenuMusic
     loop: 1
     clip: {fileID: 8300000, guid: eaf42a8b2d59aef4fb8103d1ef967ba9, type: 3}
-  - volume: 0.05
+  - volume: 1
     pitch: 1
     source: {fileID: 0}
-    name: MainMusic
+    name: BlueVDesativando
+    loop: 0
+    clip: {fileID: 8300000, guid: 2f0f2e1763740314d98b618838028872, type: 3}
+  - volume: 1
+    pitch: 1
+    source: {fileID: 0}
+    name: MenuMusic
     loop: 1
-    clip: {fileID: 8300000, guid: abd22b3d30098e940a90f793410849ce, type: 3}
+    clip: {fileID: 8300000, guid: a0ecf7590a0406b4ea16ba60c17a7c66, type: 3}
+  - volume: 1
+    pitch: 1
+    source: {fileID: 0}
+    name: 1FaseMusic
+    loop: 1
+    clip: {fileID: 8300000, guid: 12951a84ff008b24eb10a626496c5ead, type: 3}
+  - volume: 1
+    pitch: 1
+    source: {fileID: 0}
+    name: 2FaseMusic
+    loop: 1
+    clip: {fileID: 8300000, guid: 6b74d795b80f47b48a17ebbaffe1e859, type: 3}
+  - volume: 1
+    pitch: 1
+    source: {fileID: 0}
+    name: 3FaseMusic
+    loop: 1
+    clip: {fileID: 8300000, guid: e630b483b4f04b34d871286b26ca4210, type: 3}
+  - volume: 1
+    pitch: 1
+    source: {fileID: 0}
+    name: BossMusic
+    loop: 1
+    clip: {fileID: 8300000, guid: 16a2c495c10a91747bfc1019d51ed58a, type: 3}
+  - volume: 1
+    pitch: 1
+    source: {fileID: 0}
+    name: CreditosMusic
+    loop: 1
+    clip: {fileID: 8300000, guid: 1f14b9ffb5dfd00408fde10fdbdba1dd, type: 3}

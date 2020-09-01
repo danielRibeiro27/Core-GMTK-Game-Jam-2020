@@ -13,19 +13,28 @@ public class LevelCREDITOSManager : MonoBehaviour
     [SerializeField] private GameObject numero_tres;
     private DialogueTrigger currentTrigger = null;
     private bool control = false;
+    private bool esta_nos_creditos = false;
+
+    [SerializeField] private GameObject creditos;
+    [SerializeField] private GameObject mascara_final;
+    [SerializeField] private GameObject numero3;
+
 
     void Start()
     {
+        control = true;
+        StartCoroutine(SpriteFade(0f, 3f));
+
+        AudioManager.instance.StopByName("BossMusic");
+        AudioManager.instance.PlayByName("CreditosMusic");
     }
 
     private void Update()
     {
         //Verifica se a animação de créditos acabou
-        if (creditosAnim.GetCurrentAnimatorStateInfo(0).normalizedTime > 1 && !creditosAnim.IsInTransition(0) && !control)
+        if (creditosAnim.GetCurrentAnimatorStateInfo(0).normalizedTime > 1 && !creditosAnim.IsInTransition(0) && !control && esta_nos_creditos)
         {
-            control = true;
-            StartCoroutine(SpriteFade(0f, 3f));
-            GameObject.Find("Creditos").SetActive(false);
+            lvManager.GoToLevel(0);
         }
     }
 
@@ -76,6 +85,12 @@ public class LevelCREDITOSManager : MonoBehaviour
 
         yield return new WaitForSeconds(3f);
 
-        lvManager.GoToLevel(0);
+        esta_nos_creditos = true;
+        creditosAnim.SetTrigger("SubirCreditos");
+        creditos.SetActive(true);
+        mascara_final.SetActive(false);
+        numero3.SetActive(false);
+        control = false;
+
     }
 }

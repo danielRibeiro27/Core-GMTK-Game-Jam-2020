@@ -379,26 +379,11 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'Gameplay Programming: Daniel L. T. Ribeiro
-
-    Level Design: Ricardo
-    Capistano
-
-    Scenery Art: Raynon Kahel
-
-    Characters Art: Laura Mei
-
-    Script:
-    Ly
-
-    Sound: Davi
-
-
-    Who made the sound effects was Juhani Junkala. All
-    of these effects were obtained from a package called "The Essential Collection
-    of Retro Video Game Sound Effects", downloaded from OpenGameArt.org.
-
-'
+  m_text: "Gameplay Programming: Daniel L. T. Ribeiro\nLevel Design: Ricardo Capistano\nScenery
+    Art: Raynon Kahel\nCharacters Art: Laura Mei\nScript: Willy A. Vieira Guimar\xE3es\nSound:
+    Davi Maciel Beninca\n\nWho made the sound effects was Juhani Junkala. All of
+    these effects were obtained from a package called \"The Essential Collection
+    of Retro Video Game Sound Effects\", downloaded from OpenGameArt.org.\n"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: ae5edf986c81c4141b6bb928e13c9d3b, type: 2}
   m_sharedMaterial: {fileID: -3281863942941638085, guid: ae5edf986c81c4141b6bb928e13c9d3b,
@@ -444,7 +429,7 @@ MonoBehaviour:
   m_enableWordWrapping: 1
   m_wordWrappingRatios: 0.4
   m_overflowMode: 0
-  m_firstOverflowCharacterIndex: 301
+  m_firstOverflowCharacterIndex: 339
   m_linkedTextComponent: {fileID: 0}
   m_isLinkedTextComponent: 0
   m_isTextTruncated: 0
@@ -468,10 +453,10 @@ MonoBehaviour:
   m_margin: {x: 0, y: 0, z: 0, w: 0}
   m_textInfo:
     textComponent: {fileID: 897738499}
-    characterCount: 350
+    characterCount: 388
     spriteCount: 0
-    spaceCount: 53
-    wordCount: 53
+    spaceCount: 58
+    wordCount: 58
     linkCount: 0
     lineCount: 10
     pageCount: 1
@@ -807,7 +792,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1199640218
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1075,6 +1060,9 @@ MonoBehaviour:
     type: 3}
   creditosAnim: {fileID: 897738500}
   numero_tres: {fileID: 1002197065}
+  creditos: {fileID: 1199640217}
+  mascara_final: {fileID: 367103510}
+  numero3: {fileID: 1002197065}
 --- !u!4 &1362669398
 Transform:
   m_ObjectHideFlags: 0

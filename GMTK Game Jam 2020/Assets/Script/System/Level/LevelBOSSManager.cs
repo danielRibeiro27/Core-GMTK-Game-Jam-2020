@@ -38,6 +38,9 @@ public class LevelBOSSManager : MonoBehaviour
         player = GameObject.Find("Player");
 
         AudioManager.instance.StopAllAudios();
+
+        AudioManager.instance.StopByName("3FaseMusic");
+        AudioManager.instance.PlayByName("BossMusic");
     }
 
     void Update()
